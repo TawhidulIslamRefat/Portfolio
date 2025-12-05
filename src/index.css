@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans;
+  }
+}
+
+@layer components {
+  .icon-social {
+    width: 40px;
+    height: 40px;
+  }
+}

@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>TIR - Frontend Developer</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#00bcf9",
+              "background-light": "#ffffff",
+              "background-dark": "#050810",
+            },
+            fontFamily: {
+              display: ["Poppins", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      .icon-social {
+        width: 40px;
+        height: 40px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200"
+  >
+    <div
+      class="min-h-screen bg-background-light dark:bg-background-dark dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(0,188,249,0.15),rgba(255,255,255,0))]"
+    >
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="py-6">
+          <nav class="flex justify-between items-center">
+            <a class="text-xl font-bold text-primary" href="#">< REFAT /></a>
+            <div class="hidden md:flex items-center space-x-8">
+              <a class="text-primary border-b-2 border-primary pb-1" href="#"
+                >Home</a
+              >
+              <a
+                class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors"
+                href="#"
+                >About</a
+              >
+              <a
+                class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors"
+                href="#"
+                >Services</a
+              >
+              <a
+                class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors"
+                href="#"
+                >Portfolio</a
+              >
+              <a
+                class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors"
+                href="#"
+                >Contact</a
+              >
+            </div>
+            <button class="md:hidden text-slate-600 dark:text-slate-300">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4 6h16M4 12h16m-7 6h7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                ></path>
+              </svg>
+            </button>
+          </nav>
+        </header>
+        <main class="pt-16 pb-24 md:pt-24 md:pb-32">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="flex flex-col space-y-6">
+              <p class="text-slate-500 dark:text-slate-400 font-medium">
+                HI, MYSELF
+              </p>
+              <h1 class="text-5xl md:text-6xl font-bold text-primary">
+                Tawhidul Islam Refat
+              </h1>
+              <h2
+                class="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white"
+              >
+                And I'm a <span class="text-primary">Frontend Developer</span>
+              </h2>
+              <p
+                class="text-slate-600 dark:text-slate-300 leading-relaxed max-w-lg"
+              >
+                Passionate about creating beautiful, responsive websites and
+                exceptional user experiences. Specialized in modern web
+                technologies including React, Vue.js, and advanced CSS
+                frameworks.
+              </p>
+
+              <div class="pt-6">
+                <div
+                  class="flex justify-between items-center space-x-8 mb-8 text-center"
+                >
+                  <div>
+                    <p class="text-3xl font-bold text-primary">1+</p>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">
+                      Years Exp.
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-3xl font-bold text-primary">10+</p>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">
+                      Projects
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-3xl font-bold text-primary">5+</p>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">
+                      Technologies
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col sm:flex-row items-center justify-center gap-4"
+                >
+                  <button
+                    class="bg-primary text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center gap-2 w-full sm:w-auto hover:opacity-90 transition-opacity"
+                  >
+                    <span>View My Work</span>
+                  </button>
+                  <button
+                    class="border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 font-semibold py-3 px-6 rounded-lg flex items-center justify-center gap-2 w-full sm:w-auto hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    <span>Download Resume</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center items-center">
+              <div class="relative">
+                <div
+                  class="w-72 h-72 md:w-96 md:h-96 rounded-full p-2 bg-gradient-to-tr from-primary to-transparent animate-spin-slow"
+                >
+                  <div
+                    class="bg-background-light dark:bg-background-dark w-full h-full rounded-full"
+                  ></div>
+                </div>
+                <img
+                  alt="Portrait of Priyanka Rose"
+                  class="absolute inset-0 m-auto w-[calc(100%-24px)] h-[calc(100%-24px)] rounded-full object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTKLK-3T61UuQA_GIF2yWfQueQCBKlHTigbRe6a9lclwKx6OMW8QA2DvG0gq5yDfbgfVG0brsdq6kg5Yb6Fk4mXWihc_cgYVfSGHJj6ZeYNeBIrS0jKnSU5gICbM0Mpyoi8hI5tol17UF6FUd0GnGIRppWiMGEEFZ9FifctnHHzTqVCqAYpleH5aBAnEYV8sxZQMYHk1LJQTC4s5dyIFb0c4HYMJ_zbkY24KcuhGGL4mkqorNkFU42iJhbJ595bNL15Y_CVd-EFkLU"
+                />
+                <div
+                  class="absolute inset-0 rounded-full shadow-[0_0_80px_0px_rgba(0,188,249,0.5)] dark:shadow-[0_0_120px_0px_rgba(0,188,249,0.5)]"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <section
+      class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200"
+    >
+      <div
+        class="min-h-screen bg-background-light dark:bg-background-dark dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(0,188,249,0.15),rgba(255,255,255,0))]"
+      >
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <main class="py-16 md:py-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div class="relative flex justify-center items-center">
+                <div
+                  class="relative w-[350px] h-[350px] md:w-[450px] md:h-[450px]"
+                >
+                  <div
+                    class="absolute inset-0 border-2 border-primary rounded-full"
+                  ></div>
+                  <div
+                    class="absolute inset-4 border border-dashed border-primary rounded-full"
+                  ></div>
+                  <div
+                    class="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-transparent transform -rotate-45"
+                  ></div>
+                  <img
+                    alt="Portrait of Priyanka Rose"
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] rounded-full object-cover p-2 bg-background-dark"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTKLK-3T61UuQA_GIF2yWfQueQCBKlHTigbRe6a9lclwKx6OMW8QA2DvG0gq5yDfbgfVG0brsdq6kg5Yb6Fk4mXWihc_cgYVfSGHJj6ZeYNeBIrS0jKnSU5gICbM0Mpyoi8hI5tol17UF6FUd0GnGIRppWiMGEEFZ9FifctnHHzTqVCqAYpleH5aBAnEYV8sxZQMYHk1LJQTC4s5dyIFb0c4HYMJ_zbkY24KcuhGGL4mkqorNkFU42iJhbJ595bNL15Y_CVd-EFkLU"
+                  />
+                  <div
+                    class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-64"
+                  >
+                    <div
+                      class="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-lg p-4 text-center shadow-lg"
+                    >
+                      <p class="text-white font-semibold">Web Developer</p>
+                      <div class="flex items-center space-x-4 pt-4">
+                        <a
+                          class="flex items-center justify-center icon-social border-2 border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-300"
+                          href="#"
+                        >
+                          <svg
+                            fill="currentColor"
+                            height="20"
+                            viewBox="0 0 16 16"
+                            width="20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
+                            ></path>
+                          </svg>
+                        </a>
+                        <a
+                          class="flex items-center justify-center icon-social border-2 border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-300"
+                          href="#"
+                        >
+                          <svg
+                            fill="currentColor"
+                            height="20"
+                            viewBox="0 0 16 16"
+                            width="20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.232s.008-2.389.046-3.232c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.047 3.232-.047h.001zM8 4.865a3.135 3.135 0 1 0 0 6.27 3.135 3.135 0 0 0 0-6.27zM8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.29 1.29 0 1 0 0 2.58 1.29 1.29 0 0 0 0-2.58z"
+                            ></path>
+                          </svg>
+                        </a>
+                        <a
+                          class="flex items-center justify-center icon-social border-2 border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-300"
+                          href="#"
+                        >
+                          <svg
+                            fill="currentColor"
+                            height="20"
+                            viewBox="0 0 16 16"
+                            width="20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"
+                            ></path>
+                          </svg>
+                        </a>
+                        <a
+                          class="flex items-center justify-center icon-social border-2 border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-300"
+                          href="#"
+                        >
+                          <svg
+                            fill="currentColor"
+                            height="20"
+                            viewBox="0 0 16 16"
+                            width="20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                            ></path>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col space-y-6">
+                <p class="text-slate-400 font-medium">About Me</p>
+                <h1 class="text-4xl md:text-5xl font-bold text-white">
+                  I Am A Passionate
+                  <span class="text-primary">Web Designer</span>
+                </h1>
+                <p class="text-slate-300 leading-relaxed">
+                  Obviously I am a Web Designer. Web Developer with over 7 years
+                  of the best experience. Experienced with all stages of the
+                  development cycle for ourself dynamic web projects. The as
+                  opposed to using Content here, content here, making it look
+                  like readable English.
+                </p>
+                <div class="space-y-4 pt-4">
+                  <div>
+                    <h3 class="text-xl font-semibold text-primary">
+                      Smart Work
+                    </h3>
+                    <p class="text-slate-400">
+                      A part of the team that has built the front-end for an
+                      enterprise-level web application in AngularJS. I've been a
+                      part of a team that has built.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-semibold text-primary">
+                      Modern Work
+                    </h3>
+                    <p class="text-slate-400">
+                      I've worked with a wide range of technologies, including
+                      MS SQL Server and Python. One of my favorite
+                      characteristics of an employer is their passion for the
+                      work they are doing.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </section>
+    <section class="font-display bg-background-light dark:bg-background-dark">
+      <div class="flex items-center justify-center min-h-screen">
+        <div class="p-8 w-full max-w-lg"></div>
+      </div>
+    </section>
+    <section
+      class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200 antialiased"
+    >
+      <div class="container mx-auto px-4 py-16 sm:py-24">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+          <h1
+            class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white"
+          >
+            Skills &amp; Technologies
+          </h1>
+          <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+            Technologies and skills I use to build amazing products
+          </p>
+        </div>
+        <div class="space-y-16">
+          <div>
+            <div class="flex items-center mb-6">
+              <div class="w-8 h-1 bg-primary rounded-full"></div>
+              <h2
+                class="ml-4 text-2xl font-semibold text-gray-900 dark:text-white"
+              >
+                Frontend
+              </h2>
+            </div>
+            <div
+              class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
+            >
+              <div
+                class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
+              >
+                <img
+                  alt="JavaScript logo"
+                  class="h-12 w-12 mb-4"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1_OE8HrOoZ754WvqXpz1UaWiPiIq3XMsjMHsV06SvzwCG46Ul5khNwed7o4yMoplIz8WLAdiCPk6G3cjoHyXPUqqjtIH69fU2UuOtBwVxd8_pxCvWSN5_nC-wAe7O0oCzFppt3n6bfJkfNJTknsl-zvw9m2zWTxekttr973n4GAZg1UkQWWAvFagyL0m0_vA_rQclsrzUQLeIAKJAA_SsHVEiUpj3b15Lxh4PDu6WYqDN97YC263I9uheWigWC9qeRkMix_JghC2y"
+                />
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-4">
+                  JavaScript (ES6+)
+                </h3>
+                <div class="relative w-24 h-24">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <circle
+                      class="text-gray-200 dark:text-slate-700"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                      class="text-primary skill-circle"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="calc(251.2 - (251.2 * 96) / 100)"
+                      stroke-linecap="round"
+                      stroke-width="8"
+                    ></circle>
+                  </svg>
+                  <span
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white"
+                    >96%</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
+              >
+                <img
+                  alt="React.js logo"
+                  class="h-12 w-12 mb-4"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyCPXNjO8SX8W_VU5MPveT_AWHSD2GjXBEpqUsW9oEHSN4ZMcL2hntzJvy2FaoLOky8-r74AcfcCdc1DRlfMHI87f7Wj-kGuVYz4UBFHrSX6RLbVpVwD7c_lPgJdlEtwBintq4d1BL66ul395olyWKkKhnOW_j6SNWY-UAkqy3xCatVtm5dUkzD3tQoSzl4dI0Ph3BL-zAUsP3b-YERnZFK1pzGem3Ig1rnCaDJuN7A_HMIrsMQ-uXQwg-ZVVe2I6aIefCa0WYnD7H"
+                />
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-4">
+                  React.js
+                </h3>
+                <div class="relative w-24 h-24">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <circle
+                      class="text-gray-200 dark:text-slate-700"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                      class="text-primary skill-circle"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="calc(251.2 - (251.2 * 92) / 100)"
+                      stroke-linecap="round"
+                      stroke-width="8"
+                    ></circle>
+                  </svg>
+                  <span
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white"
+                    >92%</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
+              >
+                <img
+                  alt="Tailwind CSS logo"
+                  class="h-12 w-12 mb-4"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAyoVmadGBOkFXcqSNO2LLIAfQS9RIvuyNP9wenSbaFCzhiP6upXPqS-h4GnCnUST_OnzOxBIrtMVOCNOt1WHI4bHEr0iODOWRxBcsrLPG-X-nMbo9zCnFqRKauU8TjOVy_676YVTfOnTzI63gLdX7UsBeq3vosqit63sqMhYkk0H7xjP8sYLP2ExN7EJPVAMXANAWI6waf8PlaOKINL476IyyPgXsmoOfPi_8ixgZvHn8L0LNvvGF1uVT7kU_q_dsMdMPHsZ4p7Tx"
+                />
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-4">
+                  Tailwind CSS
+                </h3>
+                <div class="relative w-24 h-24">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <circle
+                      class="text-gray-200 dark:text-slate-700"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                      class="text-primary skill-circle"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="calc(251.2 - (251.2 * 90) / 100)"
+                      stroke-linecap="round"
+                      stroke-width="8"
+                    ></circle>
+                  </svg>
+                  <span
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white"
+                    >90%</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
+              >
+                <img
+                  alt="HTML5 logo"
+                  class="h-12 w-12 mb-4"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3-xtmwP9NByWmzOZADTzp3NzirT2mzm_zY5a5EfT1qb-siyprsgi-qnN_O-94bI98CJxr5SC7xKMLEu-Fh8OATVScXhuzo5sHPgM3anFetSHILQe3oVkfYbWixd5ZAEpC4eNjt4Pd6NMHr8xCI6QHr7dVoKLf1JTHX7_x0wq-4uZV7PYElZa0OloD59b_pmahM0I4x-HQrRorT3S82qI44MzMWc7u1p7XyJydcg7jzjahjxsRvV-no4x1DiaeLLfJ3udOu44nHCiL"
+                />
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-4">
+                  HTML5
+                </h3>
+                <div class="relative w-24 h-24">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <circle
+                      class="text-gray-200 dark:text-slate-700"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                      class="text-primary skill-circle"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="calc(251.2 - (251.2 * 95) / 100)"
+                      stroke-linecap="round"
+                      stroke-width="8"
+                    ></circle>
+                  </svg>
+                  <span
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white"
+                    >95%</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
+              >
+                <img
+                  alt="CSS3 logo"
+                  class="h-12 w-12 mb-4"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuArR9GCn2s6S5bvd8IYsTmfxCNp3IqDAaoqKVvgChMWAmL1oadh-cp7YC9-u-SB_MteZdsJSMuNwQhLJssXBynoZXTQ_-IzvUzg0AcuPlGngwPXTun_yfpny6vEey2yBbMsVHm9-uUwepydZUpRVv7BAN-4N0WnEgHzP3zH2lUhZAFzFTbo_ZJ6hJMGySJIRfnnOSQD6eY6UKw0wFLiAsaq2fVtmkwfkfDzPH3BpFv75tHlKIrGmXliob4as2K313ibqqrwzAvAr6RE"
+                />
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-4">
+                  CSS3
+                </h3>
+                <div class="relative w-24 h-24">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <circle
+                      class="text-gray-200 dark:text-slate-700"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                      class="text-primary skill-circle"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="calc(251.2 - (251.2 * 93) / 100)"
+                      stroke-linecap="round"
+                      stroke-width="8"
+                    ></circle>
+                  </svg>
+                  <span
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white"
+                    >93%</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center mb-6">
+              <div class="w-8 h-1 bg-primary rounded-full"></div>
+              <h2
+                class="ml-4 text-2xl font-semibold text-gray-900 dark:text-white"
+              >
+                Backend
+              </h2>
+            </div>
+            <div
+              class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
+            >
+              <div
+                class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
+              >
+                <img
+                  alt="Node.js logo"
+                  class="h-12 w-12 mb-4"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl_VH7VT6gCDQjuRQdzpLy_cF9NiIrnyLRCo06CY9bY2lJTNHddsKlaijC8-3IcUcSbAxzVE924CbbmyRXV3tWVwjUm1iGjkHIs0gV0WNr8x3Vds4NuNeOrh9CIoNeQO_Od_773zotApPK2nCJSKr1CYDp837j4E92JpP-G_aMxrUTsiDKSiMIBLZPnPTFC50fL87uwd8rF3RwNWWhM_SZNRL-l7_n81mX3UiVHvpCu7gy1a4-ComI_yh4FbEK-rTxh7e-SD3H2lBX"
+                />
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-4">
+                  Node.js
+                </h3>
+                <div class="relative w-24 h-24">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <circle
+                      class="text-gray-200 dark:text-slate-700"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                      class="text-primary skill-circle"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="calc(251.2 - (251.2 * 87) / 100)"
+                      stroke-linecap="round"
+                      stroke-width="8"
+                    ></circle>
+                  </svg>
+                  <span
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white"
+                    >87%</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
+              >
+                <img
+                  alt="Express.js logo"
+                  class="h-12 w-12 mb-4 dark:invert"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCwmoKRLPHKKiNr6CMR-i8WRq0SGHaSDQAFiVAZfphnEfyv1oNobgXsm58HX9en6N0eFlBcRCpUAt4QtbqfRnr_MjlKNBwLmX-dzQhZLPDyWpR-lgEsbU9M1xxfcvtc6DPlsq_-2Q7b9JseWtS0X7up8NA_egz9UrLeYb2a3jjoUlHY2qiweAYQof0gElFG-_OkPGyTHlMC3kC5K58q25TTWwWxwTBKsTScloEqhAeCJ_NSvi0Eh8jk5Qjv1bsflc33BBjR6ME3jSU"
+                />
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-4">
+                  Express.js
+                </h3>
+                <div class="relative w-24 h-24">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <circle
+                      class="text-gray-200 dark:text-slate-700"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                      class="text-primary skill-circle"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="calc(251.2 - (251.2 * 85) / 100)"
+                      stroke-linecap="round"
+                      stroke-width="8"
+                    ></circle>
+                  </svg>
+                  <span
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white"
+                    >85%</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center mb-6">
+              <div class="w-8 h-1 bg-primary rounded-full"></div>
+              <h2
+                class="ml-4 text-2xl font-semibold text-gray-900 dark:text-white"
+              >
+                Database
+              </h2>
+            </div>
+            <div
+              class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
+            >
+              <div
+                class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
+              >
+                <img
+                  alt="MongoDB logo"
+                  class="h-12 w-12 mb-4"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2ry_RPV_eRUdVRt45-iyw8Ln7HvDeNQHjGioYTt25Tdrz80l0JOf-Dcok8H0fOEOdeSQVwn2z8BYO5MCYYTYCLDGHRTKDnwVW_U4PHY57MaEvtVB1Aqu9aDFg4p5cmbEljxKzwlPqkrRofAMdn72k0K6NdUbsBEbTjzldEXLzHoReO-S3BdViWRwNR0mrXl7mLNwwNF1rAzne4dUW6k96yNDkbj2wCnEKzv5xuG467MJDejcqpuD6b3s2lvxYgFjJnFHcM1gVzZ0F"
+                />
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-4">
+                  MongoDB
+                </h3>
+                <div class="relative w-24 h-24">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <circle
+                      class="text-gray-200 dark:text-slate-700"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                      class="text-primary skill-circle"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="calc(251.2 - (251.2 * 85) / 100)"
+                      stroke-linecap="round"
+                      stroke-width="8"
+                    ></circle>
+                  </svg>
+                  <span
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white"
+                    >85%</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center mb-6">
+              <div class="w-8 h-1 bg-primary rounded-full"></div>
+              <h2
+                class="ml-4 text-2xl font-semibold text-gray-900 dark:text-white"
+              >
+                Tools
+              </h2>
+            </div>
+            <div
+              class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
+            >
+              <div
+                class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
+              >
+                <img
+                  alt="Git logo"
+                  class="h-12 w-12 mb-4"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuASdYi9OaLHD8fWcnywFtPxMRSzEZXJDHEX2ZWB_8C5_NvsluascV8gMOo092XVmg8VHaugeXs3aRDZLK3C6y6sNpSsvnvSvQd54H_TKleHXaxz2B9_t3fSbjDnV1Dau1IgAUU11qWGlZBrNxOlPJYfD_JA2h89IFVuC3IOK0WkNMtZebbfZj98Oh13sRQVGuLuFnUGy0xTDb7755zFcVTBf7o0KZIiWQpCmv3IBsbOWSNN_KSFbdFQVQT6TqQQxhqYop591G-spiwJ"
+                />
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-4">
+                  Git &amp; GitHub
+                </h3>
+                <div class="relative w-24 h-24">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <circle
+                      class="text-gray-200 dark:text-slate-700"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                      class="text-primary skill-circle"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="calc(251.2 - (251.2 * 90) / 100)"
+                      stroke-linecap="round"
+                      stroke-width="8"
+                    ></circle>
+                  </svg>
+                  <span
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white"
+                    >90%</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
+              >
+                <img
+                  alt="VS Code logo"
+                  class="h-12 w-12 mb-4"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcQ3V7fXiavEHG4qrRqmLj2cHfVv4orHSNNKGMd_iGGWkP0UcsYbMUC9mXB-M3SejrOCEp4ZM2ZcjyONH7Jt1XZANkj69gBdtdE1Q6ecSBcED67V_T0s-oFBhmvJ2MBCsnqVtUMOzV2nkgKf1LYvWnLY2H4J51J7iZrPfAyxj9CTQdoNQrpZZrDY-cEZATOx1Cl8POPHnMQ5BPSWZKfRrqJIuyQpm_GwmxFalNyz4CksY9oeu7MYBNuZsrFxRVn_XJRnmMlb-zgYZG"
+                />
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-4">
+                  VS Code
+                </h3>
+                <div class="relative w-24 h-24">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <circle
+                      class="text-gray-200 dark:text-slate-700"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                      class="text-primary skill-circle"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="calc(251.2 - (251.2 * 95) / 100)"
+                      stroke-linecap="round"
+                      stroke-width="8"
+                    ></circle>
+                  </svg>
+                  <span
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white"
+                    >95%</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
+              >
+                <svg
+                  class="h-12 w-12 mb-4 fill-black dark:fill-white"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Vercel</title>
+                  <path d="M24 22.525H0l12-21.05 12 21.05z"></path>
+                </svg>
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-4">
+                  Vercel
+                </h3>
+                <div class="relative w-24 h-24">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <circle
+                      class="text-gray-200 dark:text-slate-700"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                      class="text-primary skill-circle"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="calc(251.2 - (251.2 * 87) / 100)"
+                      stroke-linecap="round"
+                      stroke-width="8"
+                    ></circle>
+                  </svg>
+                  <span
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white"
+                    >87%</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center mb-6">
+              <div class="w-8 h-1 bg-primary rounded-full"></div>
+              <h2
+                class="ml-4 text-2xl font-semibold text-gray-900 dark:text-white"
+              >
+                Soft Skills
+              </h2>
+            </div>
+            <div
+              class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
+            >
+              <div
+                class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
+              >
+                <svg
+                  class="h-12 w-12 mb-4 text-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-4">
+                  Problem Solving
+                </h3>
+                <div class="relative w-24 h-24">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <circle
+                      class="text-gray-200 dark:text-slate-700"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                      class="text-primary skill-circle"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="calc(251.2 - (251.2 * 93) / 100)"
+                      stroke-linecap="round"
+                      stroke-width="8"
+                    ></circle>
+                  </svg>
+                  <span
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white"
+                    >93%</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
+              >
+                <svg
+                  class="h-12 w-12 mb-4 text-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-4">
+                  Teamwork
+                </h3>
+                <div class="relative w-24 h-24">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <circle
+                      class="text-gray-200 dark:text-slate-700"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                      class="text-primary skill-circle"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="calc(251.2 - (251.2 * 90) / 100)"
+                      stroke-linecap="round"
+                      stroke-width="8"
+                    ></circle>
+                  </svg>
+                  <span
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white"
+                    >90%</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-slate-700 flex flex-col items-center text-center"
+              >
+                <svg
+                  class="h-12 w-12 mb-4 text-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-4">
+                  Communication
+                </h3>
+                <div class="relative w-24 h-24">
+                  <svg class="w-full h-full" viewBox="0 0 100 100">
+                    <circle
+                      class="text-gray-200 dark:text-slate-700"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-width="8"
+                    ></circle>
+                    <circle
+                      class="text-primary skill-circle"
+                      cx="50"
+                      cy="50"
+                      fill="transparent"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="calc(251.2 - (251.2 * 91) / 100)"
+                      stroke-linecap="round"
+                      stroke-width="8"
+                    ></circle>
+                  </svg>
+                  <span
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white"
+                    >91%</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</head>
+<section class="bg-background-light dark:bg-background-dark font-display">
+<div class="container mx-auto px-4 py-16 md:py-24">
+<header class="text-center mb-12 md:mb-16">
+<h1 class="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-4">My <span>Projects</span></h1>
+<p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">Showcasing my diverse skills and creative solutions</p>
+</header>
+<main class="space-y-16">
+<div class="flex flex-col items-center justify-center space-y-8">
+<div class="w-full flex flex-col items-center space-y-6">
+<div class="flex items-center justify-center space-x-2 md:space-x-4 rounded-full bg-slate-200 dark:bg-slate-800 p-1.5">
+<button class="px-4 py-2 text-sm font-medium text-white bg-primary rounded-full">All</button>
+<button class="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors duration-200">Frontend</button>
+<button class="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors duration-200">Full Stack</button>
+<button class="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors duration-200">Backend</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+<div class="dark:bg-[#152033] rounded-xl overflow-hidden flex flex-col group border border-transparent hover:shadow-glow-blue-strong hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300 ease-in-out">
+<div class="overflow-hidden">
+<img alt="E-Commerce Platform project thumbnail showing a person making a transaction" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEyuMrnog0MV2HuB7wRDcWDFEO6qhtBddrNgGsePTQ3pPNXc9_9x-9FbWhUblJ6w6RgSPPShhpYTuT0gRb8Ed6cIYqp3gYZp1f4dzy_zSXycWICD4GAIgkcsgRFltMmtWaX8rM2eH87zDeCMWk1ps7m2AzG5Z1UIMF2i25UnVAeTA72WxIFQM4np1gQXYRq5aNiapZidsP0MTuNxva8HflTxqX27IAOe4pXW0N7K--XkmEow9h2Oo47gD3k_7e1pvcuTqcIMyga1dI"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-xl font-semibold text-slate-800 dark:text-white">E-Commerce Platform</h3>
+<span class="material-symbols-outlined text-blue-400 !text-2xl group-hover:text-blue-300 group-hover:drop-shadow-[0_0_8px_rgba(96,165,250,0.8)] transition-all duration-300" title="Includes Backend/Database">database</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-sm mb-4 flex-grow">A full-stack e-commerce solution with user authentication, product management, shopping cart, and payment integration.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="bg-blue-200 dark:bg-blue-900/70 text-blue-700 dark:text-blue-300 text-xs font-semibold px-3 py-1.5 rounded-full">React</span>
+<span class="bg-blue-200 dark:bg-blue-900/70 text-blue-700 dark:text-blue-300 text-xs font-semibold px-3 py-1.5 rounded-full">Node.js</span>
+<span class="bg-blue-200 dark:bg-blue-900/70 text-blue-700 dark:text-blue-300 text-xs font-semibold px-3 py-1.5 rounded-full">MongoDB</span>
+</div>
+<div class="mt-auto flex items-center space-x-6 text-sm">
+<a class="flex items-center text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors group/link" href="#">
+<span class="material-symbols-outlined text-xl mr-1.5 group-hover/link:text-primary transition-colors">open_in_new</span>
+View Project
+</a>
+<a class="flex items-center text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors group/link" href="#">
+<span class="material-symbols-outlined text-xl mr-1.5 group-hover/link:text-primary transition-colors">code</span>
+Source Code
+</a>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-xl overflow-hidden flex flex-col group border border-transparent dark:border-blue-500/30 hover:dark:border-blue-400 hover:shadow-glow-blue-strong hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300 ease-in-out">
+<div class="overflow-hidden relative">
+<img alt="Social Media Dashboard project thumbnail showing various graphs and charts" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZZ540IVnTGB9HeuTKbvWE8Ac5iHAgf6y3kN_BYi6FlRlu9u8kg51d8nTnPqoCWqMeRXhk5EAHFI6b5MSM3m_I4lhXVqLpnB8rfKNhNEsJWKatsHOHsm6Kr5Z6n8ZuhDZm_8R3YfIhG5gvT5DA0eZ2K5s9_nvZtEoZ-76lOXf3JL2o9bwGM7aIQTtiQufEHJpCIsAxmh9L6-DMZRUJnSvll-5KXAgzT_DpgZJVZNWRaR1ytTskjIP5d9wE6CKihmDRvnTCD234LnXo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-2">Social Media Dashboard</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm mb-4 flex-grow">A comprehensive social media management dashboard with analytics, post scheduling, and engagement tracking features.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-xs font-medium px-3 py-1 rounded-full">React</span>
+<span class="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-xs font-medium px-3 py-1 rounded-full">Express.js</span>
+<span class="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-xs font-medium px-3 py-1 rounded-full">Chart.js</span>
+</div>
+<div class="mt-auto flex items-center space-x-6 text-sm">
+<a class="flex items-center text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors group/link" href="#">
+<span class="material-symbols-outlined text-xl mr-1.5 group-hover/link:text-primary transition-colors">open_in_new</span>
+View Project
+</a>
+<a class="flex items-center text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors group/link" href="#">
+<span class="material-symbols-outlined text-xl mr-1.5 group-hover/link:text-primary transition-colors">code</span>
+Source Code
+</a>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-xl overflow-hidden flex flex-col group border border-transparent hover:dark:border-primary/50 hover:shadow-glow-blue-strong hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300 ease-in-out">
+<div class="overflow-hidden">
+<img alt="Task management app thumbnail with sticky notes for To Do, Doing, and Done" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSeu5_gw4wfW1Dq9WnzMRWBXnFBXzVSKyCVQWvPXIxHmEbSuY3tWTNMOznyQi5p1LxTnOhqZ0jMBBNKxRL266mlsoKrOx_JBs8AtlDgg38jMgoyQjllNURbashRUlpBC48rifQIZK8KRrgl6YBBmaEGQI2yUXpVGMCKUD0GwPwjvBWWNWuJqT553CFVGEC_yQckGqMdu4HNfPjv-hIxDIl2te1Ne5C7ocuwbjjybISUWavCxsZ4tatMNJO_f2kXuZ5gsPnrcW4oMtb"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-semibold text-slate-800 dark:text-white mb-2">Task Management App</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm mb-4 flex-grow">A collaborative task management application with real-time updates, team collaboration features, and intuitive drag-and-drop interface.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-xs font-medium px-3 py-1 rounded-full">React</span>
+<span class="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-xs font-medium px-3 py-1 rounded-full">Firebase</span>
+<span class="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-xs font-medium px-3 py-1 rounded-full">Tailwind CSS</span>
+</div>
+<div class="mt-auto flex items-center space-x-6 text-sm">
+<a class="flex items-center text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors group/link" href="#">
+<span class="material-symbols-outlined text-xl mr-1.5 group-hover/link:text-primary transition-colors">open_in_new</span>
+View Project
+</a>
+<a class="flex items-center text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors group/link" href="#">
+<span class="material-symbols-outlined text-xl mr-1.5 group-hover/link:text-primary transition-colors">code</span>
+Source Code
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</section>
+<section class="font-display bg-background-light dark:bg-background-dark text-slate-700 dark:text-slate-300 antialiased">
+<div class="min-h-screen p-4 sm:p-6 md:p-8 flex items-center justify-center">
+<div class="w-full max-w-4xl mx-auto">
+<div class="mb-10">
+<h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-2">Education &amp; Certification</h1>
+<p class="text-slate-600 dark:text-slate-400">My academic background and professional training</p>
+</div>
+<div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent dark:before:via-slate-700">
+<div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+<div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 dark:bg-slate-700 group-is-active:bg-primary text-slate-500 group-is-active:text-emerald-50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+<span class="material-icons text-xl text-white">school</span>
+</div>
+<div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-slate-800 p-6 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
+<h2 class="font-bold text-lg text-slate-800 dark:text-slate-100">Bachelor of Science in Computer Science and Engineering</h2>
+<h3 class="font-medium text-primary">Green University of Bangladesh</h3>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-500 dark:text-slate-400 mt-2 mb-3">
+<div class="flex items-center gap-1.5">
+<span class="material-icons text-base">location_on</span>
+<span>Dhaka, Bangladesh</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-icons text-base">calendar_today</span>
+<span>Aug 2022 - Present</span>
+</div>
+</div>
+<p class="text-sm">Currently pursuing degree with focus on software development, algorithms, and web technologies.</p>
+</div>
+</div>
+<div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+<div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 dark:bg-slate-700 group-is-active:bg-primary text-slate-500 group-is-active:text-emerald-50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+<span class="material-icons text-xl text-white">menu_book</span>
+</div>
+<div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-slate-800 p-6 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
+<h2 class="font-bold text-lg text-slate-800 dark:text-slate-100">Complete Web Development Course</h2>
+<h3 class="font-medium text-primary">Programming Hero</h3>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-500 dark:text-slate-400 mt-2 mb-3">
+<div class="flex items-center gap-1.5">
+<span class="material-icons text-base">language</span>
+<span>Online</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-icons text-base">calendar_today</span>
+<span>Jul 2024 - Dec 2024</span>
+</div>
+</div>
+<p class="text-sm">Comprehensive web development training covering HTML, CSS, JavaScript, React.js, Node.js, Express.js, MongoDB, and modern web technologies.</p>
+</div>
+</div>
+</div>
+<div class="mt-12 p-6 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
+<h2 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
+<span class="material-icons text-primary text-2xl">translate</span>
+            Languages
+        </h2>
+<div class="flex flex-wrap gap-3">
+<span class="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium px-4 py-2 rounded-full">Bengali <span class="text-slate-500 dark:text-slate-400">(Native)</span></span>
+<span class="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium px-4 py-2 rounded-full">English <span class="text-slate-500 dark:text-slate-400">(Fluent)</span></span>
+</div>
+</div>
+</div>
+</div>
+<section class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="flex min-h-screen w-full items-center justify-center p-4 sm:p-6 lg:p-8">
+<div class="w-full max-w-6xl">
+<div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+<div class="flex flex-col space-y-8">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Get In Touch</h2>
+<p class="mt-4 text-base font-normal leading-relaxed text-gray-600 dark:text-gray-400">
+                            Have a question, a project idea, or just want to connect? I'd love to hear from you. Fill out the form below, and I'll get back to you as soon as possible.
+                        </p>
+</div>
+<form class="space-y-6">
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal text-gray-700 dark:text-gray-300 pb-2">Your Name</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-background-light dark:bg-gray-800/50 border-gray-300 dark:border-gray-700 h-12 px-4 text-base font-normal leading-normal placeholder:text-gray-500 dark:placeholder:text-gray-500 text-gray-900 dark:text-white focus:border-primary focus:ring-primary" placeholder="Enter your full name" type="text" value=""/>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal text-gray-700 dark:text-gray-300 pb-2">Your Email</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-background-light dark:bg-gray-800/50 border-gray-300 dark:border-gray-700 h-12 px-4 text-base font-normal leading-normal placeholder:text-gray-500 dark:placeholder:text-gray-500 text-gray-900 dark:text-white focus:border-primary focus:ring-primary" placeholder="Enter your email address" type="email" value=""/>
+</label>
+</div>
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal text-gray-700 dark:text-gray-300 pb-2">Your Message</p>
+<textarea class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-background-light dark:bg-gray-800/50 border-gray-300 dark:border-gray-700 min-h-36 p-4 text-base font-normal leading-normal placeholder:text-gray-500 dark:placeholder:text-gray-500 text-gray-900 dark:text-white focus:border-primary focus:ring-primary" placeholder="Write your message here..."></textarea>
+</label>
+<div>
+<button class="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-base font-medium text-white shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark" type="submit">
+                                Send Message
+                            </button>
+</div>
+</form>
+</div>
+<div class="flex flex-col justify-center space-y-6">
+<div class="flex items-center gap-6 rounded-xl bg-primary/5 dark:bg-gray-800/30 p-6">
+<div class="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+<span class="material-symbols-outlined text-primary !text-4xl">mail</span>
+</div>
+<div>
+<p class="text-lg font-semibold text-gray-900 dark:text-white">Email</p>
+<a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="mailto:instructor.name@example.com">instructor.name@example.com</a>
+</div>
+</div>
+<div class="flex items-center gap-6 rounded-xl bg-primary/5 dark:bg-gray-800/30 p-6">
+<div class="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+<span class="material-symbols-outlined text-primary !text-4xl">call</span>
+</div>
+<div>
+<p class="text-lg font-semibold text-gray-900 dark:text-white">Phone</p>
+<a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="tel:+1234567890">+1 (234) 567-890</a>
+</div>
+</div>
+<div class="flex items-center gap-6 rounded-xl bg-primary/5 dark:bg-gray-800/30 p-6">
+<div class="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+<span class="material-symbols-outlined text-primary !text-4xl">location_on</span>
+</div>
+<div>
+<p class="text-lg font-semibold text-gray-900 dark:text-white">Location</p>
+<p class="text-gray-600 dark:text-gray-300">San Francisco, CA</p>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800">
+<h3 class="text-lg font-semibold text-gray-900 dark:text-white">Social Connect</h3>
+<div class="mt-4 flex items-center space-x-4">
+<a class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/20" href="#">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+<path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path>
+</svg>
+</a>
+<a class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/20" href="#">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+<path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zM11.854 8.297a3.556 3.556 0 100 7.112 3.556 3.556 0 000-7.112zM15.418 8.182a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z" fill-rule="evenodd"></path>
+</svg>
+</a>
+<a class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/20" href="#">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+</svg>
+</a>
+<a class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/20" href="#">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+<path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" fill-rule="evenodd"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex flex-col min-h-screen">
+<!-- Main content placeholder -->
+<main class="flex-grow">
+<!-- This area would contain the main content of the portfolio page -->
+</main>
+<!-- Footer Section -->
+<footer class="bg-[#101922] text-gray-300 py-12 px-4 sm:px-6 lg:px-8">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+<!-- Left Section: Navigation & Contact -->
+<div class="md:col-span-6 flex flex-col sm:flex-row sm:justify-around gap-12">
+<!-- Navigation Column -->
+<div class="flex flex-col gap-4">
+<h3 class="text-lg font-semibold text-white">Navigation</h3>
+<nav class="flex flex-col gap-2.5">
+<a class="text-gray-400 hover:text-primary transition-colors duration-300" href="#">Home</a>
+<a class="text-gray-400 hover:text-primary transition-colors duration-300" href="#">About</a>
+<a class="text-gray-400 hover:text-primary transition-colors duration-300" href="#">Services</a>
+<a class="text-gray-400 hover:text-primary transition-colors duration-300" href="#">Projects</a>
+<a class="text-gray-400 hover:text-primary transition-colors duration-300" href="#">Contact</a>
+</nav>
+</div>
+<!-- Contact & Socials Column -->
+<div class="flex flex-col gap-8">
+<div>
+<h3 class="text-lg font-semibold text-white mb-4">Get in Touch</h3>
+<div class="flex flex-col gap-2.5">
+<p class="flex items-center gap-3 text-gray-400">
+<span class="material-symbols-outlined text-primary/80" style="font-size: 20px;">mail</span>
+<span>instructor@email.com</span>
+</p>
+<p class="flex items-center gap-3 text-gray-400">
+<span class="material-symbols-outlined text-primary/80" style="font-size: 20px;">call</span>
+<span>+1 (234) 567-890</span>
+</p>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-white mb-4">Follow Me</h3>
+<div class="flex items-center gap-4">
+<a class="text-gray-400 hover:text-primary transition-colors duration-300" href="#">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg>
+</a>
+<a class="text-gray-400 hover:text-primary transition-colors duration-300" href="#">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.485 2.5c.636-.247 1.363-.416 2.427-.465C9.93 2.013 10.284 2 12.315 2zm-1.161 1.043c-1.06.048-1.696.21-2.227.427A3.397 3.397 0 006.166 4.99a3.397 3.397 0 00-1.528 2.227c-.217.531-.379 1.167-.427 2.227-.049 1.024-.06 1.35-.06 3.588s.011 2.564.06 3.588c.048 1.06.21 1.696.427 2.227a3.397 3.397 0 001.528 2.227 3.397 3.397 0 002.227 1.528c.531.217 1.167.379 2.227.427 1.024.049 1.35.06 3.588.06s2.564-.011 3.588-.06c1.06-.048 1.696-.21 2.227-.427a3.397 3.397 0 002.227-1.528 3.397 3.397 0 001.528-2.227c.217-.531.379-1.167.427-2.227.049-1.024.06-1.35.06-3.588s-.011-2.564-.06-3.588c-.048-1.06-.21-1.696-.427-2.227a3.397 3.397 0 00-1.528-2.227 3.397 3.397 0 00-2.227-1.528c-.531-.217-1.167-.379-2.227-.427-1.024-.049-1.35-.06-3.588-.06s-2.564.011-3.588.06zM12 8.25a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5zM12 14a2 2 0 110-4 2 2 0 010 4zm6.406-7.125a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" fill-rule="evenodd"></path></svg>
+</a>
+<a class="text-gray-400 hover:text-primary transition-colors duration-300" href="#">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+</a>
+<a class="text-gray-400 hover:text-primary transition-colors duration-300" href="#">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.745 0 .267.18.577.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" fill-rule="evenodd"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Section: Map -->
+<div class="md:col-span-6 min-h-[300px]">
+<div class="h-full w-full bg-center bg-no-repeat bg-cover rounded-xl object-cover" data-alt="Dark themed satellite map of a city at night" data-location="San Francisco" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAIVcKnuRWQH4T0CwP7AvpHIjtU1fniOiYh9WesLHO2-d7ksMspVaHACqaMQhu4ATuLEo-CZ8dUdngfpfH_FvDPxDrhY6SV9VUax6-Bz63Zlm-gVFvNaNflreJLGntWDvUUviy4N4gNop-D8EIZaC9cGyg6-ipAZdQn4RPmlJzcIkRraHdHvvOLo0s0VZo3GrELZx3HhFER-mqgqCrqqMKh6Up2Io0SKx1HZM12HsGn7U_8PKsxirwtl2iaPyJxUBGrkQaeMlXbthgC");'></div>
+</div>
+</div>
+<!-- Copyright Bar -->
+<div class="mt-12 pt-8 border-t border-gray-200/10 text-center">
+<p class="text-base text-gray-400">© 2024 John Doe. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+</section>
+  </body>
+</html>
