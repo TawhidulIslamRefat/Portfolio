@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-primary: #00bcf9;
+  }
+
   body {
     @apply font-sans;
   }
@@ -12,5 +16,15 @@
   .icon-social {
     width: 40px;
     height: 40px;
+  }
+}
+
+@layer utilities {
+
+  /* Custom utilities if needed */
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
   }
 }
