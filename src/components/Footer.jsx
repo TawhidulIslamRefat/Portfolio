@@ -1,69 +1,433 @@
-import React from 'react';
+import React, { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaFacebook,
+  FaArrowUp,
+} from "react-icons/fa";
+import { HiCode } from "react-icons/hi";
+
+const SocialIcon = ({ social, index }) => {
+  const iconRef = useRef(null);
+  const glowRef = useRef(null);
+
+  useEffect(() => {
+    // GSAP rotation animation
+    if (iconRef.current) {
+      gsap.to(iconRef.current, {
+        rotation: 360,
+        duration: 3 + index * 0.5,
+        repeat: -1,
+        ease: "linear",
+        yoyo: false,
+      });
+    }
+
+    // GSAP glow pulse
+    if (glowRef.current) {
+      gsap.to(glowRef.current, {
+        scale: 1.3,
+        opacity: 0.6,
+        duration: 1.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: index * 0.2,
+      });
+    }
+  }, [index]);
+
+  return (
+    <motion.a
+      href={social.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 20, scale: 0 }}
+      animate={{ 
+        opacity: 1, 
+        y: [0, -8, 0],
+        scale: 1,
+      }}
+      transition={{
+        opacity: { duration: 0.5, delay: index * 0.1 },
+        scale: { duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 200 },
+        y: {
+          duration: 1.5,
+          repeat: Infinity,
+          repeatType: "loop",
+          ease: "easeInOut",
+          delay: index * 0.2,
+        }
+      }}
+      whileHover={{ 
+        y: -12, 
+        scale: 1.3,
+        rotate: [0, -15, 15, -15, 0],
+        backgroundColor: "var(--color-primary)",
+        color: "#ffffff",
+        borderColor: "var(--color-primary)",
+        transition: { 
+          rotate: { duration: 0.6 },
+          y: { duration: 0.2 },
+          scale: { duration: 0.2 },
+          backgroundColor: { duration: 0.3 },
+          color: { duration: 0.3 },
+          borderColor: { duration: 0.3 }
+        }
+      }}
+      whileTap={{ scale: 0.85, rotate: 180 }}
+      className="w-10 h-10 rounded-full bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 flex items-center justify-center text-slate-500 dark:text-slate-400 shadow-sm dark:shadow-none hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 relative overflow-hidden"
+    >
+      {/* Background glow effect */}
+      <div 
+        ref={glowRef}
+        className="absolute inset-0 bg-primary/20 rounded-full blur-md opacity-0"
+      />
+      
+      {/* Rotating border effect */}
+      <div 
+        ref={iconRef}
+        className="absolute inset-[-2px] rounded-full opacity-0 group-hover:opacity-100"
+        style={{
+          background: 'conic-gradient(from 0deg, transparent 0%, var(--color-primary) 50%, transparent 100%)',
+        }}
+      />
+
+      {/* Icon */}
+      <span className="relative z-10">{social.icon}</span>
+
+      {/* Ripple effect on hover */}
+      <motion.span
+        className="absolute inset-0 rounded-full border-2 border-primary"
+        initial={{ scale: 1, opacity: 0 }}
+        whileHover={{
+          scale: 1.6,
+          opacity: [0, 0.6, 0],
+        }}
+        transition={{ duration: 0.8 }}
+      />
+
+      {/* Particle burst on hover */}
+      {[...Array(4)].map((_, i) => (
+        <motion.span
+          key={i}
+          className="absolute w-1 h-1 bg-primary rounded-full"
+          style={{
+            top: '50%',
+            left: '50%',
+          }}
+          initial={{ scale: 0, x: 0, y: 0 }}
+          whileHover={{
+            scale: [0, 1, 0],
+            x: [0, Math.cos((i * Math.PI) / 2) * 20],
+            y: [0, Math.sin((i * Math.PI) / 2) * 20],
+            opacity: [0, 1, 0],
+          }}
+          transition={{ duration: 0.6, delay: i * 0.05 }}
+        />
+      ))}
+    </motion.a>
+  );
+};
 
 const Footer = () => {
-    return (
-        <footer className=" text-gray-300 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-                    {/* Left Section: Navigation & Contact */}
-                    <div className="md:col-span-6 flex flex-col sm:flex-row sm:justify-around gap-12">
-                        {/* Navigation Column */}
-                        <div className="flex flex-col gap-4">
-                            <h3 className="text-lg font-semibold text-white">Navigation</h3>
-                            <nav className="flex flex-col gap-2.5">
-                                <a className="text-gray-400 hover:text-primary transition-colors duration-300" href="#">Home</a>
-                                <a className="text-gray-400 hover:text-primary transition-colors duration-300" href="#">About</a>
-                                <a className="text-gray-400 hover:text-primary transition-colors duration-300" href="#">Services</a>
-                                <a className="text-gray-400 hover:text-primary transition-colors duration-300" href="#">Projects</a>
-                                <a className="text-gray-400 hover:text-primary transition-colors duration-300" href="#">Contact</a>
-                            </nav>
-                        </div>
-                        {/* Contact & Socials Column */}
-                        <div className="flex flex-col gap-8">
-                            <div>
-                                <h3 className="text-lg font-semibold text-white mb-4">Get in Touch</h3>
-                                <div className="flex flex-col gap-2.5">
-                                    <p className="flex items-center gap-3 text-gray-400">
-                                        <span className="material-symbols-outlined text-primary/80" style={{ fontSize: '20px' }}>mail</span>
-                                        <span>instructor@email.com</span>
-                                    </p>
-                                    <p className="flex items-center gap-3 text-gray-400">
-                                        <span className="material-symbols-outlined text-primary/80" style={{ fontSize: '20px' }}>call</span>
-                                        <span>+1 (234) 567-890</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 className="text-lg font-semibold text-white mb-4">Follow Me</h3>
-                                <div className="flex items-center gap-4">
-                                    <a className="text-gray-400 hover:text-primary transition-colors duration-300" href="#">
-                                        <svg aria-hidden="true" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path clipRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fillRule="evenodd"></path></svg>
-                                    </a>
-                                    <a className="text-gray-400 hover:text-primary transition-colors duration-300" href="#">
-                                        <svg aria-hidden="true" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path clipRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.153 1.772c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.485 2.5c.636-.247 1.363-.416 2.427-.465C9.93 2.013 10.284 2 12.315 2zm-1.161 1.043c-1.06.048-1.696.21-2.227.427A3.397 3.397 0 006.166 4.99a3.397 3.397 0 00-1.528 2.227c-.217.531-.379 1.167-.427 2.227-.049 1.024-.06 1.35-.06 3.588s.011 2.564.06 3.588c.048 1.06.21 1.696.427 2.227a3.397 3.397 0 001.528 2.227 3.397 3.397 0 002.227 1.528c.531.217 1.167.379 2.227.427 1.024.049 1.35.06 3.588.06s2.564-.011 3.588-.06c1.06-.048 1.696-.21 2.227-.427a3.397 3.397 0 002.227-1.528 3.397 3.397 0 001.528-2.227c.217-.531.379-1.167.427-2.227.049-1.024.06-1.35.06-3.588s-.011-2.564-.06-3.588c-.048-1.06-.21-1.696-.427-2.227a3.397 3.397 0 00-1.528-2.227 3.397 3.397 0 00-2.227-1.528c-.531-.217-1.167-.379-2.227-.427-1.024-.049-1.35-.06-3.588-.06s-2.564.011-3.588.06zM12 8.25a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5zM12 14a2 2 0 110-4 2 2 0 010 4zm6.406-7.125a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" fillRule="evenodd"></path></svg>
-                                    </a>
-                                    <a className="text-gray-400 hover:text-primary transition-colors duration-300" href="#">
-                                        <svg aria-hidden="true" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-                                    </a>
-                                    <a className="text-gray-400 hover:text-primary transition-colors duration-300" href="#">
-                                        <svg aria-hidden="true" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.745 0 .267.18.577.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" fillRule="evenodd"></path></svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Right Section: Map */}
-                    <div className="md:col-span-6 min-h-[300px]">
-                        <div className="h-full w-full bg-center bg-no-repeat bg-cover rounded-xl object-cover" data-alt="Dark themed satellite map of a city at night" data-location="San Francisco" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAIVcKnuRWQH4T0CwP7AvpHIjtU1fniOiYh9WesLHO2-d7ksMspVaHACqaMQhu4ATuLEo-CZ8dUdngfpfH_FvDPxDrhY6SV9VUax6-Bz63Zlm-gVFvNaNflreJLGntWDvUUviy4N4gNop-D8EIZaC9cGyg6-ipAZdQn4RPmlJzcIkRraHdHvvOLo0s0VZo3GrELZx3HhFER-mqgqCrqqMKh6Up2Io0SKx1HZM12HsGn7U_8PKsxirwtl2iaPyJxUBGrkQaeMlXbthgC")' }}></div>
-                    </div>
-                </div>
-                {/* Copyright Bar */}
-                <div class="mt-12 pt-8 border-t border-gray-200/10 text-center">
-                    <p class="text-base text-gray-400">© 2024 John Doe. All Rights Reserved.</p>
-                </div>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  const socialLinks = [
+    { icon: <FaGithub />, href: "https://github.com/TawhidulIslamRefat" },
+    { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/tawhidul-islam-refat-webdeveloper/" },
+    { icon: <FaTwitter />, href: "https://x.com/TawhidulRefat?t=JPXwrO7BzzrNkFx2Kbs6Bw&s=09" },
+    { icon: <FaFacebook />, href: "https://www.facebook.com/tawhidulislamrefat11" },
+  ];
+
+  const navLinks = [
+    { name: "Home", href: "#" },
+    { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
+    { name: "Education", href: "#education" },
+    { name: "Contact", href: "#contact" },
+  ];
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <footer className="w-full md:w-11/12 mx-auto relative font-display overflow-hidden transition-colors duration-500 border-t border-slate-200 dark:border-slate-800">
+      {/* Top decorative line */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:pt-15 relative border-b border-white z-10">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 xl:gap-12 "
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {/* Column 1: About */}
+          <motion.div variants={itemVariants} className="space-y-6">
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+                <span className="p-2 bg-primary/10 rounded-lg">
+                  <HiCode className="text-2xl text-primary" />
+                </span>
+                <span className="text-primary">Tawhidul Islam Refat</span>
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base transition-colors duration-300">
+                Frontend Developer crafting clean and responsive web interfaces.
+                Passionate about building seamless user experiences with modern
+                technologies.
+              </p>
+              <div className="flex gap-4 pt-2">
+                {socialLinks.map((social, index) => (
+                  <SocialIcon key={index} social={social} index={index} />
+                ))}
+              </div>
             </div>
-        </footer>
-    );
+          </motion.div>
+
+          {/* Column 2: Quick Links */}
+          <motion.div variants={itemVariants} className="space-y-6">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white relative inline-block transition-colors duration-300">
+              Quick Links
+              <span className="absolute -bottom-2 left-0 w-8 h-0.5 bg-primary rounded-full"></span>
+            </h3>
+            <ul className="space-y-3">
+              {navLinks.map((link, index) => (
+                <li key={index}>
+                  <a
+                    href={link.href}
+                    className="group flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors duration-300 w-fit"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></span>
+                    <span className="group-hover:translate-x-1 transition-transform duration-300 font-medium text-sm">
+                      {link.name}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Column 3: Contact Info */}
+          <motion.div variants={itemVariants} className="space-y-6">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white relative inline-block transition-colors duration-300">
+              Contact Info
+              <span className="absolute -bottom-2 left-0 w-8 h-0.5 bg-primary rounded-full"></span>
+            </h3>
+            <div className="space-y-4">
+              <div className="flex items-start gap-4 group">
+                <div className="mt-1 h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                  <MdEmail />
+                </div>
+                <div className="text-sm">
+                  <p className="text-slate-500 dark:text-slate-500 font-medium mb-0.5 transition-colors duration-300">
+                    Email
+                  </p>
+                  <a
+                    href="mailto:tawhidulislamrefat11@gmail.com"
+                    className="text-slate-700 dark:text-slate-300 font-semibold hover:text-primary dark:hover:text-primary transition-colors break-all"
+                  >
+                    tawhidulislamrefat11@gmail.com
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 group">
+                <div className="mt-1 h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                  <MdPhone />
+                </div>
+                <div className="text-sm">
+                  <p className="text-slate-500 dark:text-slate-500 font-medium mb-0.5 transition-colors duration-300">
+                    Phone
+                  </p>
+                  <a
+                    href="tel:+8801913334594"
+                    className="text-slate-700 dark:text-slate-300 font-semibold hover:text-primary dark:hover:text-primary transition-colors"
+                  >
+                    +880 1913-334594
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 group">
+                <div className="mt-1 h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                  <MdLocationOn />
+                </div>
+                <div className="text-sm">
+                  <p className="text-slate-500 dark:text-slate-500 font-medium mb-0.5 transition-colors duration-300">
+                    Location
+                  </p>
+                  <span className="text-slate-700 dark:text-slate-300 font-semibold transition-colors duration-300">
+                    Khulna, Bangladesh
+                  </span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Column 4: Map */}
+          <motion.div variants={itemVariants} className="space-y-6">
+            <motion.h3 
+              className="text-lg font-bold text-slate-900 dark:text-white relative inline-block transition-colors duration-300"
+              whileHover={{ x: 5 }}
+            >
+              Location
+              <motion.span 
+                className="absolute -bottom-2 left-0 h-0.5 bg-primary rounded-full"
+                initial={{ width: "2rem" }}
+                whileHover={{ width: "100%" }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.h3>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              whileHover={{ scale: 1.03, y: -5 }}
+              className="w-full h-40 rounded-xl overflow-hidden border-2 border-slate-200 dark:border-slate-800/50 shadow-sm hover:shadow-xl hover:border-primary/50 transition-all duration-300 relative group"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117562.90317531726!2d89.479589!3d22.8456208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff9071cb47152f%3A0xf04b212290718952!2sKhulna!5e0!3m2!1sen!2sbd!4v1716789012345!5m2!1sen!2sbd"
+                width="100%"
+                height="100%"
+                style={{ border: 0, filter: "" }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Google Map"
+                className="w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+              ></iframe>
+              <motion.div 
+                className="absolute inset-0 bg-primary/10 pointer-events-none"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              {/* Animated corner indicators */}
+              <motion.div
+                className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-primary"
+                animate={{
+                  opacity: [0.3, 1, 0.3],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              <motion.div
+                className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-primary"
+                animate={{
+                  opacity: [0.3, 1, 0.3],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1,
+                }}
+              />
+            </motion.div>
+          </motion.div>
+        </motion.div>
+
+        {/* Bottom Bar: Copyright + Designed By + Back to Top */}
+        <motion.div
+          variants={itemVariants}
+          className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 text-sm relative"
+        >
+          {/* Animated border line */}
+          <motion.div
+            className="absolute top-0 left-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent"
+            animate={{
+              width: ["0%", "100%", "0%"],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+
+          <motion.p 
+            className="text-slate-500 dark:text-slate-400 font-medium transition-colors duration-300"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            © {new Date().getFullYear()} Tawhidul Islam Refat. All rights
+            reserved.
+          </motion.p>
+
+          <div className="flex items-center gap-6">
+            <motion.button
+              onClick={scrollToTop}
+              className="flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:border-primary hover:text-primary dark:hover:border-primary dark:hover:text-primary transition-all duration-300 font-medium group relative overflow-hidden"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: "0 0 20px rgba(0, 188, 249, 0.3)",
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {/* Animated background on hover */}
+              <motion.div
+                className="absolute inset-0 bg-primary/10"
+                initial={{ scale: 0, opacity: 0 }}
+                whileHover={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <span className="relative z-10">Back to Top</span>
+              <motion.div
+                animate={{
+                  y: [0, -3, 0],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="relative z-10"
+              >
+                <FaArrowUp className="w-3 h-3" />
+              </motion.div>
+            </motion.button>
+          </div>
+        </motion.div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

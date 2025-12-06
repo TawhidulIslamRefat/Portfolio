@@ -1,87 +1,222 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { gsap } from 'gsap';
+import { RxOpenInNewWindow } from 'react-icons/rx';
+import { LuCodeXml } from 'react-icons/lu';
 
-const ProjectCard = ({ title, description, tags, image, type, index }) => (
-    <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="group relative rounded-xl p-[2px] overflow-hidden" // Electric border container
-    >
-        {/* Electric Border Background - Spinning Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 animate-spin-slow" />
+const ProjectCard = ({ title, description, tags, image, type, index, live, githubClient, githubServer }) => {
+    const cardRef = useRef(null);
 
-        {/* Alternative "Electric" Border using Conic Gradient for continuous effect */}
-        <div className="absolute inset-[-100%] bg-[conic-gradient(from_90deg_at_50%_50%,#0000_0%,var(--color-primary)_50%,#0000_100%)] animate-[spin_4s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    return (
+        <motion.div
+            ref={cardRef}
+            initial={{ opacity: 0, y: 50, rotateX: -15 }}
+            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+            viewport={{ once: true }}
+            transition={{ 
+                duration: 0.6, 
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 100,
+            }}
+            whileHover={{ 
+                y: -15, 
+                scale: 1.03,
+                rotateY: 5,
+                transition: { duration: 0.3 }
+            }}
+            className="group relative rounded-xl p-[3px] overflow-visible"
+            style={{ perspective: "1000px" }}
+        >
 
-        <div className="relative h-full bg-white dark:bg-slate-900 rounded-xl overflow-hidden flex flex-col z-10">
-            <div className="overflow-hidden relative h-48">
-                <img alt={`${title} thumbnail`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src={image} />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
+            <div className="relative h-full bg-white dark:bg-slate-900 rounded-xl overflow-hidden flex flex-col z-10 shadow-2xl">
+                {/* Animated corner accents */}
+                <motion.div
+                    className="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-primary/50 rounded-tl-lg z-20"
+                    animate={{
+                        opacity: [0.3, 1, 0.3],
+                    }}
+                    transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                />
+                <motion.div
+                    className="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-primary/50 rounded-br-lg z-20"
+                    animate={{
+                        opacity: [0.3, 1, 0.3],
+                    }}
+                    transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 1,
+                    }}
+                />
 
-            <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-center justify-between mb-3">
+                <div className="overflow-hidden relative h-48">
+                    <motion.img 
+                        alt={`${title} thumbnail`} 
+                        className="w-full h-full object-cover" 
+                        src={image}
+                        whileHover={{ scale: 1.15, rotate: 2 }}
+                        transition={{ duration: 0.4 }}
+                    />
+                    <motion.div 
+                        className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"
+                        initial={{ opacity: 0 }}
+                        whileHover={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                    />
+                </div>
+
+            <div className="p-6 flex flex-col flex-grow relative">
+                <motion.div 
+                    className="flex items-center justify-between mb-3"
+                    initial={{ x: -20, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                >
                     <h3 className="text-xl font-bold text-slate-800 dark:text-white group-hover:text-primary transition-colors duration-300">{title}</h3>
-                    {type === 'backend' && (
-                        <span className="material-symbols-outlined text-blue-400 !text-2xl group-hover:text-primary transition-colors duration-300" title="Includes Backend/Database">database</span>
-                    )}
-                </div>
-                <p className="text-slate-600 dark:text-slate-400 text-sm mb-5 flex-grow leading-relaxed">{description}</p>
-                <div className="flex flex-wrap gap-2 mb-6">
+                </motion.div>
+                
+                <motion.p 
+                    className="text-slate-600 dark:text-slate-400 text-sm mb-5 flex-grow leading-relaxed"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                >
+                    {description}
+                </motion.p>
+                
+                <motion.div 
+                    className="flex flex-wrap gap-2 mb-6"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                >
                     {tags.map((tag, idx) => (
-                        <span key={idx} className="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 border border-blue-100 dark:border-blue-800 text-xs font-medium px-3 py-1 rounded-full">{tag}</span>
+                        <motion.span 
+                            key={idx} 
+                            className="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 border border-blue-100 dark:border-blue-800 text-xs font-medium px-3 py-1 rounded-full"
+                            whileHover={{ scale: 1.1, y: -2 }}
+                            transition={{ type: "spring", stiffness: 400 }}
+                        >
+                            {tag}
+                        </motion.span>
                     ))}
-                </div>
-                <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
-                    <a className="flex items-center text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors group/link" href="#">
-                        <span className="material-symbols-outlined text-lg mr-2 group-hover/link:translate-x-1 transition-transform">open_in_new</span>
-                        Live Demo
-                    </a>
-                    <a className="flex items-center text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors group/link" href="#">
-                        <span className="material-symbols-outlined text-lg mr-2">code</span>
-                        Source Code
-                    </a>
-                </div>
+                </motion.div>
+                
+                <motion.div 
+                    className="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 gap-2"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                >
+                    <motion.a 
+                        className="flex items-center text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors group/link" 
+                        href={live} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05, x: 5 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <motion.span 
+                            className="material-symbols-outlined text-lg mr-2"
+                            whileHover={{ rotate: 45 }}
+                        >
+                            <RxOpenInNewWindow />
+                        </motion.span>
+                        Live
+                    </motion.a>
+                    <div className="flex gap-3">
+                        {githubClient && (
+                            <motion.a 
+                                className="flex items-center text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors group/link" 
+                                href={githubClient} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                <span className="material-symbols-outlined text-lg mr-1"><LuCodeXml /></span>
+                                Client
+                            </motion.a>
+                        )}
+                        {githubServer && (
+                            <motion.a 
+                                className="flex items-center text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors group/link" 
+                                href={githubServer} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                <span className="material-symbols-outlined text-lg mr-1"><LuCodeXml /></span>
+                                Server
+                            </motion.a>
+                        )}
+                    </div>
+                </motion.div>
             </div>
         </div>
-    </motion.div>
-);
+        </motion.div>
+    );
+};
 
 const Projects = () => {
     const [filter, setFilter] = useState('All');
 
     const projects = [
         {
-            title: 'E-Commerce Platform',
-            description: 'A full-stack e-commerce solution with user authentication, product management, shopping cart, and payment integration.',
-            tags: ['React', 'Node.js', 'MongoDB'],
-            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBEyuMrnog0MV2HuB7wRDcWDFEO6qhtBddrNgGsePTQ3pPNXc9_9x-9FbWhUblJ6w6RgSPPShhpYTuT0gRb8Ed6cIYqp3gYZp1f4dzy_zSXycWICD4GAIgkcsgRFltMmtWaX8rM2eH87zDeCMWk1ps7m2AzG5Z1UIMF2i25UnVAeTA72WxIFQM4np1gQXYRq5aNiapZidsP0MTuNxva8HflTxqX27IAOe4pXW0N7K--XkmEow9h2Oo47gD3k_7e1pvcuTqcIMyga1dI',
+            title: 'HomeNest A Real Estate platform',
+            description: 'A modern real estate listing platform where users can explore, post, and manage property listings for rent or sale with ease.',
+            tags: ['React', 'Node.js', 'MongoDB', 'Express.js', 'Firebase', 'Tailwind', 'Netlify'],
+            image: 'https://www.maxiomtech.com/wp-content/uploads/2025/08/Maxiom-Blog-Images-39-1024x576.png',
             category: 'Full Stack',
-            type: 'backend'
+            type: 'backend',
+            live: 'https://home-nest-1.netlify.app/',
+            githubClient: 'https://github.com/TawhidulIslamRefat/Home-Nest-Client.git',
+            githubServer: 'https://github.com/TawhidulIslamRefat/Home-Nest-Server.git'
         },
         {
-            title: 'Social Media Dashboard',
-            description: 'A comprehensive social media management dashboard with analytics, post scheduling, and engagement tracking features.',
-            tags: ['React', 'Express.js', 'Chart.js'],
-            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDZZ540IVnTGB9HeuTKbvWE8Ac5iHAgf6y3kN_BYi6FlRlu9u8kg51d8nTnPqoCWqMeRXhk5EAHFI6b5MSM3m_I4lhXVqLpnB8rfKNhNEsJWKatsHOHsm6Kr5Z6n8ZuhDZm_8R3YfIhG5gvT5DA0eZ2K5s9_nvZtEoZ-76lOXf3JL2o9bwGM7aIQTtiQufEHJpCIsAxmh9L6-DMZRUJnSvll-5KXAgzT_DpgZJVZNWRaR1ytTskjIP5d9wE6CKihmDRvnTCD234LnXo',
-            category: 'Frontend'
+            title: 'KidzoMart E-commerce platform',
+            description: 'A modern e-commerce platform for kids toys, focusing on top-rated and best-selling products..',
+            tags: ['React', "Tailwind", 'React Router', 'Firebase', 'Netlify'],
+            image: 'https://outspoken.newagebd.com/files/img/202501/79c7c92a5cdaecb7fe08861f580a0c2c.jpg',
+            category: 'Frontend',
+            live: 'https://toy-topia-01.netlify.app/',
+            githubClient: 'https://github.com/TawhidulIslamRefat/KidzoMart.git',
+            githubServer: ''
         },
         {
-            title: 'Task Management App',
-            description: 'A collaborative task management application with real-time updates, team collaboration features, and intuitive drag-and-drop interface.',
-            tags: ['React', 'Firebase', 'Tailwind CSS'],
-            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCSeu5_gw4wfW1Dq9WnzMRWBXnFBXzVSKyCVQWvPXIxHmEbSuY3tWTNMOznyQi5p1LxTnOhqZ0jMBBNKxRL266mlsoKrOx_JBs8AtlDgg38jMgoyQjllNURbashRUlpBC48rifQIZK8KRrgl6YBBmaEGQI2yUXpVGMCKUD0GwPwjvBWWNWuJqT553CFVGEC_yQckGqMdu4HNfPjv-hIxDIl2te1Ne5C7ocuwbjjybISUWavCxsZ4tatMNJO_f2kXuZ5gsPnrcW4oMtb',
-            category: 'Frontend'
+            title: 'E Dokan - A modern e-commerce platform',
+            description: 'E-Dokan is a Next.js 16 e-commerce platform with Tailwind CSS, offering product browsing, user auth, and authorized CRUD features with protected routes.',
+            tags: ['Next.js', 'Firebase', 'Tailwind CSS', 'Node.js', 'MongoDB', 'Express.js', 'Vercel'],
+            image: 'https://www.ecommercetimes.com/wp-content/uploads/sites/5/2021/12/xl-2017-mobile-commerce-2.jpg',
+            category: 'Full Stack',
+            live: 'https://e-dokan-1.vercel.app//',
+            githubClient: 'https://github.com/TawhidulIslamRefat/E-Dokan.git', 
+            githubServer: 'https://github.com/TawhidulIslamRefat/E-Dokan-Server.git'
+        },
+        {
+            title: 'HERO.IO',
+            description: 'HERO.IO is a modern, responsive web application designed to give users a seamless app discovery experience — just like the Play Store or App Store.',
+            tags: ['React', 'Tailwind CSS', 'Netlify','React Router',' Recharts','Local Storage','React Spinners'],
+            image: 'https://vancell.ca/wp-content/uploads/2020/11/androidphone-1.jpg',
+            category: 'Frontend',
+            live: 'https://hero-apps-1.netlify.app/',
+            githubClient: 'https://github.com/TawhidulIslamRefat/Hero-App.git',
+            githubServer: ''
         }
     ];
 
     const filteredProjects = filter === 'All' ? projects : projects.filter(p => p.category === filter);
 
     return (
-        <section className="w-11/12 mx-auto bg-background-light dark:bg-background-dark font-display">
-            <div className="px-4 py-16 md:py-15 mt-5">
+        <section className="w-full md:w-11/12 mx-auto bg-background-light  dark:bg-background-dark font-display">
+            <div className="px-4 py-10 md:py-10 ">
                 <header className="text-center mb-16">
                     <motion.h1
                         initial={{ opacity: 0, y: -20 }}
@@ -102,30 +237,56 @@ const Projects = () => {
                     </motion.p>
                 </header>
                 <main className="space-y-12">
-                    <div className="flex flex-col items-center justify-center space-y-12">
+                    <div className="flex flex-col items-center justify-center space-y-8 md:space-y-12">
                         {/* Filter Buttons */}
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
+                            initial={{ opacity: 0, scale: 0.9, y: -20 }}
+                            whileInView={{ opacity: 1, scale: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="flex items-center justify-center space-x-2 md:space-x-4 rounded-full bg-slate-100 dark:bg-slate-800/50 p-1.5 backdrop-blur-sm shadow-inner"
+                            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                            className="flex items-center justify-center space-x-2 md:space-x-4 rounded-full bg-slate-100 dark:bg-slate-800/50 p-1.5 backdrop-blur-sm shadow-md hover:shadow-xl relative overflow-hidden"
                         >
-                            {['All', 'Frontend', 'Full Stack', 'Backend'].map((cat) => (
-                                <button
+                            {/* Animated background glow */}
+                            <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-primary/10 via-purple-500/10 to-primary/10"
+                                animate={{
+                                    x: ['-100%', '100%'],
+                                }}
+                                transition={{
+                                    duration: 3,
+                                    repeat: Infinity,
+                                    ease: "linear",
+                                }}
+                            />
+                            
+                            {['All', 'Frontend', 'Full Stack', 'Backend'].map((cat, idx) => (
+                                <motion.button
                                     key={cat}
                                     onClick={() => setFilter(cat)}
-                                    className={`px-6 py-2 text-sm font-medium rounded-full transition-all duration-300 ${filter === cat
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: idx * 0.1 }}
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className={`relative px-5 md:px-6 py-2 text-sm font-medium rounded-full transition-all duration-300 ${filter === cat
                                         ? 'text-white bg-primary shadow-lg shadow-primary/30'
                                         : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-slate-700/50'
                                         }`}
                                 >
-                                    {cat}
-                                </button>
+                                    {filter === cat && (
+                                        <motion.div
+                                            layoutId="activeFilter"
+                                            className="absolute inset-0 bg-primary rounded-full -z-10"
+                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                        />
+                                    )}
+                                    <span className="relative z-10">{cat}</span>
+                                </motion.button>
                             ))}
                         </motion.div>
 
                         {/* Projects Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full">
                             {filteredProjects.map((project, index) => (
                                 <ProjectCard key={index} index={index} {...project} />
                             ))}

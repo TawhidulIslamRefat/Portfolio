@@ -47,7 +47,7 @@ const Hero = () => {
     };
 
     return (
-        <section className='w-full md:w-11/12 mx-auto mt-14'>
+        <section className='w-full md:w-11/12 mx-auto mt-10 md:px-5 px-0'>
 
             {/* Glassmorphism Card */}
 
@@ -55,15 +55,15 @@ const Hero = () => {
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="flex flex-col md:flex-row items-center justify-between w-full bg-white/30 dark:bg-slate-800/40 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl p-8 md:p-12 relative z-10 transition-all duration-300 hover:shadow-primary/10 overflow-hidden"
+                className="flex flex-col-reverse md:flex-row items-center justify-between w-full bg-white/30 dark:bg-slate-800/40 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl p-8 md:p-12 relative z-10 transition-all duration-300 hover:shadow-primary/10 overflow-hidden"
             >
                 {/* Animated Gradient Background Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[shimmer_2.5s_infinite] pointer-events-none"></div>
 
                 {/* Content Section */}
                 <div className="flex flex-col space-y-6 text-center md:text-left z-10">
-                    <motion.div variants={itemVariants} className="inline-block px-4 py-2 rounded-full bg-white/50 dark:bg-slate-700/50 backdrop-blur-sm border border-white/20 w-fit mx-auto md:mx-0">
-                        <p className="text-sm font-semibold text-primary tracking-wider uppercase">
+                    <motion.div variants={itemVariants} className="inline-block px-4 py-2 rounded-full bg-white/50 dark:bg-slate-700/50 backdrop-blur-sm border border-white/20 w-fit mx-auto mt-5 md:mt-0 md:mx-0">
+                        <p className="text-sm  font-semibold text-primary tracking-wider uppercase">
                             Welcome to my Portfolio
                         </p>
                     </motion.div>
@@ -76,10 +76,10 @@ const Hero = () => {
                             </span>
                         </motion.h1>
                         <motion.div variants={itemVariants} className="text-2xl md:text-2xl font-bold text-slate-600 dark:text-slate-300">
-                            I am a <span className="text-primary inline-block">
+                            I am a <span className="text-primary inline-block text-lg md:text-xl">
                                 <Typewriter
                                     options={{
-                                        strings: ['Frontend Developer', 'Junior MERN Stack Developer', 'React Developer'],
+                                        strings: ['Frontend Developer', 'MERN Stack Developer', 'React Developer'],
                                         autoStart: true,
                                         loop: true,
                                     }}
@@ -93,24 +93,24 @@ const Hero = () => {
                     </motion.p>
 
                     <motion.div variants={itemVariants} className="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
-                        <motion.button
+                        <motion.a href='#contact'
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="bg-gradient-to-r from-primary to-blue-600 text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
                         >
                             Hire Me
-                        </motion.button>
-                        <motion.button
+                        </motion.a>
+                        <motion.a href='https://docs.google.com/document/d/1WIRKxpW3gbdYfYl6DYm8lIOk-9EI6_3J/edit?usp=sharing&ouid=102865775355070212798&rtpof=true&sd=true'
                             whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.9)" }}
                             whileTap={{ scale: 0.95 }}
                             className="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-bold py-3 px-8 rounded-xl border border-slate-200 dark:border-slate-700 shadow-md hover:shadow-lg transition-all duration-300"
                         >
                             Download Resume
-                        </motion.button>
+                        </motion.a>
                     </motion.div>
 
                     {/* Stats Grid */}
-                    <motion.div variants={itemVariants} className="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200 dark:border-slate-700/50 mt-8">
+                    <motion.div variants={itemVariants} className="grid grid-cols-3 gap-3 md:gap-6 pt-8 border-t border-slate-200 dark:border-slate-700/50 mt-8">
                         <div>
                             <p className="text-3xl font-bold text-primary">1+</p>
                             <p className="text-sm text-slate-500 dark:text-slate-400 uppercase tracking-wide font-medium mt-1">Years</p>

@@ -103,8 +103,8 @@ const Skills = () => {
     };
 
     return (
-        <section className="w-11/12 mx-auto px-5 bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200 antialiased overflow-hidden">
-            <div className="container mx-auto px-4 py-16 sm:pt-24 sm:pb-15">
+        <section className=" w-full md:w-11/12 mx-auto px-0 md:px-5 font-display text-gray-800 dark:text-gray-200 antialiased overflow-hidden">
+            <div className=" mx-auto px-0 md:px-4 py-16 sm:pt-24 sm:pb-10">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -120,7 +120,7 @@ const Skills = () => {
                     </p>
                 </motion.div>
 
-                <div className="space-y-16">
+                <div className="space-y-5">
                     {/* Reusable Section for Skills Categories */}
                     {[
                         { title: "Frontend", skills: frontendSkills },
@@ -129,7 +129,7 @@ const Skills = () => {
                         { title: "Tools", skills: toolSkills },
                         { title: "Soft Skills", skills: softSkills }
                     ].map((section, idx) => (
-                        <div key={idx} className=' p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col  text-center'>
+                        <div key={idx} className=' p-2 md:p-6 rounded-lg transition-shadow duration-300 flex flex-col  text-center'>
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
@@ -140,7 +140,7 @@ const Skills = () => {
                                 <div className="w-8 h-1 bg-primary rounded-full"></div>
                                 <h2 className="ml-4 text-2xl font-semibold text-gray-900 dark:text-white">{section.title}</h2>
                             </motion.div>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
                                 {section.skills.map((skill, index) => (
                                     <SkillCard key={skill.name} index={index} {...skill} />
                                 ))}

@@ -1,98 +1,491 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { gsap } from 'gsap';
+import emailjs from '@emailjs/browser';
+import { MdEmail, MdPhone, MdLocationOn, MdSend } from 'react-icons/md';
+import { FaGithub, FaLinkedin, FaTwitter, FaFacebook } from 'react-icons/fa';
+
+const ContactInfoCard = ({ info, index }) => {
+    const cardRef = useRef(null);
+    const borderRef = useRef(null);
+    const iconRef = useRef(null);
+
+    useEffect(() => {
+        // GSAP border rotation
+        if (borderRef.current) {
+            gsap.to(borderRef.current, {
+                rotation: 360,
+                duration: 4 + index,
+                repeat: -1,
+                ease: "linear",
+            });
+        }
+
+        // GSAP floating animation
+        if (cardRef.current) {
+            gsap.to(cardRef.current, {
+                y: -8,
+                duration: 2 + index * 0.3,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: index * 0.2,
+            });
+        }
+
+        // GSAP icon pulse
+        if (iconRef.current) {
+            gsap.to(iconRef.current, {
+                scale: 1.1,
+                duration: 1.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: index * 0.3,
+            });
+        }
+    }, [index]);
+
+    return (
+        <motion.div
+            className="relative rounded-2xl p-[3px] overflow-hidden"
+            style={{ perspective: "1000px" }}
+        >
+            {/* Electric Border */}
+            <div 
+                ref={borderRef}
+            />
+            
+            {/* Gradient border on hover */}
+            <div />
+
+            {/* Card Content */}
+            <div className="relative bg-white dark:bg-slate-800/90 backdrop-blur-sm p-8 rounded-2xl shadow-2xl flex flex-col items-center text-center group">
+                {/* Animated corner accents */}
+                <motion.div
+                    className="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-primary/50 rounded-tl-lg"
+                    animate={{
+                        opacity: [0.3, 1, 0.3],
+                    }}
+                    transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                />
+                <motion.div
+                    className="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-primary/50 rounded-br-lg"
+                    animate={{
+                        opacity: [0.3, 1, 0.3],
+                    }}
+                    transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 1,
+                    }}
+                />
+
+                {/* Icon with animation */}
+                <motion.div 
+                    ref={iconRef}
+                    className={`w-16 h-16 rounded-full ${info.color} bg-opacity-10 dark:bg-opacity-20 flex items-center justify-center text-primary mb-6 relative`}
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                >
+                    {info.icon}
+                    {/* Ripple effect */}
+                    <motion.div
+                        className="absolute inset-0 rounded-full border-2 border-primary"
+                        animate={{
+                            scale: [1, 1.5],
+                            opacity: [0.5, 0],
+                        }}
+                        transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeOut",
+                        }}
+                    />
+                </motion.div>
+
+                <motion.h3 
+                    className="text-xl font-bold text-slate-900 dark:text-white mb-2"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + index * 0.1 }}
+                >
+                    {info.title}
+                </motion.h3>
+                
+                {info.link ? (
+                    <motion.a 
+                        href={info.link} 
+                        className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 0.3 + index * 0.1 }}
+                        whileHover={{ scale: 1.05 }}
+                    >
+                        {info.value}
+                    </motion.a>
+                ) : (
+                    <motion.p 
+                        className="text-slate-600 dark:text-slate-300"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 0.3 + index * 0.1 }}
+                    >
+                        {info.value}
+                    </motion.p>
+                )}
+            </div>
+        </motion.div>
+    );
+};
 
 const Contact = () => {
+    const formRef = useRef();
+    const [loading, setLoading] = useState(false);
+    const [status, setStatus] = useState(null); // 'success' | 'error' | null
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setStatus(null);
+
+        // REPLACE THESE WITH YOUR ACTUAL EMAILJS SERVICE ID, TEMPLATE ID, AND PUBLIC KEY
+        emailjs.sendForm(
+            'service_rq2t8rp',
+            'template_yxg43rp',
+            formRef.current,
+            '6r7ycv8cg5cWRkWpv'
+        )
+            .then((result) => {
+                console.log(result.text);
+                setLoading(false);
+                setStatus('success');
+                e.target.reset();
+                setTimeout(() => setStatus(null), 5000);
+            }, (error) => {
+                console.log(error.text);
+                setLoading(false);
+                setStatus('error');
+                setTimeout(() => setStatus(null), 5000);
+            });
+    };
+
+    const contactInfo = [
+        {
+            icon: <MdEmail className="text-3xl" />,
+            title: "Email",
+            value: "tawhidulislamrefat11@gmail.com",
+            link: "mailto:tawhidulislamrefat11@gmail.com",
+            color: "bg-blue-500"
+        },
+        {
+            icon: <MdPhone className="text-3xl" />,
+            title: "Phone",
+            value: "+8801913334594",
+            link: "tel:+8801913334594",
+            color: "bg-green-500"
+        },
+        {
+            icon: <MdLocationOn className="text-3xl" />,
+            title: "Location",
+            value: "Khulna, Bangladesh",
+            link: null,
+            color: "bg-purple-500"
+        }
+    ];
+
     return (
-        <section className="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
-            <div className="flex min-h-screen w-full items-center justify-center p-4 sm:p-6 lg:p-8">
-                <div className="w-full max-w-6xl">
-                    <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-                        <div className="flex flex-col space-y-8">
-                            <div>
-                                <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Get In Touch</h2>
-                                <p className="mt-4 text-base font-normal leading-relaxed text-gray-600 dark:text-gray-400">
-                                    Have a question, a project idea, or just want to connect? I'd love to hear from you. Fill out the form below, and I'll get back to you as soon as possible.
-                                </p>
-                            </div>
-                            <form className="space-y-6">
-                                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                                    <label className="flex flex-col">
-                                        <p className="text-sm font-medium leading-normal text-gray-700 dark:text-gray-300 pb-2">Your Name</p>
-                                        <input className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-background-light dark:bg-gray-800/50 border-gray-300 dark:border-gray-700 h-12 px-4 text-base font-normal leading-normal placeholder:text-gray-500 dark:placeholder:text-gray-500 text-gray-900 dark:text-white focus:border-primary focus:ring-primary" placeholder="Enter your full name" type="text" />
-                                    </label>
-                                    <label className="flex flex-col">
-                                        <p className="text-sm font-medium leading-normal text-gray-700 dark:text-gray-300 pb-2">Your Email</p>
-                                        <input className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-background-light dark:bg-gray-800/50 border-gray-300 dark:border-gray-700 h-12 px-4 text-base font-normal leading-normal placeholder:text-gray-500 dark:placeholder:text-gray-500 text-gray-900 dark:text-white focus:border-primary focus:ring-primary" placeholder="Enter your email address" type="email" />
-                                    </label>
-                                </div>
-                                <label className="flex flex-col">
-                                    <p className="text-sm font-medium leading-normal text-gray-700 dark:text-gray-300 pb-2">Your Message</p>
-                                    <textarea className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-background-light dark:bg-gray-800/50 border-gray-300 dark:border-gray-700 min-h-36 p-4 text-base font-normal leading-normal placeholder:text-gray-500 dark:placeholder:text-gray-500 text-gray-900 dark:text-white focus:border-primary focus:ring-primary" placeholder="Write your message here..."></textarea>
-                                </label>
-                                <div>
-                                    <button className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-base font-medium text-white shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark" type="submit">
-                                        Send Message
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                        <div className="flex flex-col justify-center space-y-6">
-                            <div className="flex items-center gap-6 rounded-xl bg-primary/5 dark:bg-gray-800/30 p-6">
-                                <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                                    <span className="material-symbols-outlined text-primary !text-4xl">mail</span>
-                                </div>
-                                <div>
-                                    <p className="text-lg font-semibold text-gray-900 dark:text-white">Email</p>
-                                    <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="mailto:instructor.name@example.com">instructor.name@example.com</a>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-6 rounded-xl bg-primary/5 dark:bg-gray-800/30 p-6">
-                                <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                                    <span className="material-symbols-outlined text-primary !text-4xl">call</span>
-                                </div>
-                                <div>
-                                    <p className="text-lg font-semibold text-gray-900 dark:text-white">Phone</p>
-                                    <a className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="tel:+1234567890">+1 (234) 567-890</a>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-6 rounded-xl bg-primary/5 dark:bg-gray-800/30 p-6">
-                                <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                                    <span className="material-symbols-outlined text-primary !text-4xl">location_on</span>
-                                </div>
-                                <div>
-                                    <p className="text-lg font-semibold text-gray-900 dark:text-white">Location</p>
-                                    <p className="text-gray-600 dark:text-gray-300">San Francisco, CA</p>
-                                </div>
-                            </div>
-                            <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800">
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Social Connect</h3>
-                                <div className="mt-4 flex items-center space-x-4">
-                                    <a className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/20" href="#">
-                                        <svg aria-hidden="true" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                            <path clipRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fillRule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                    <a className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/20" href="#">
-                                        <svg aria-hidden="true" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                            <path clipRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zM11.854 8.297a3.556 3.556 0 100 7.112 3.556 3.556 0 000-7.112zM15.418 8.182a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z" fillRule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                    <a className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/20" href="#">
-                                        <svg aria-hidden="true" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
-                                        </svg>
-                                    </a>
-                                    <a class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/20" href="#">
-                                        <svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                            <path clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" fillRule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <section className="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200 py-16 md:py-24 relative overflow-hidden">
+            {/* Background Decorations */}
+            
+
+            <div className="w-full md:w-11/12 mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Get In Touch</h2>
+                    <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
+                        Have a project in mind or just want to say hi? Feel free to reach out!
+                    </p>
+                </motion.div>
+
+                {/* Top Section: Contact Info Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                    {contactInfo.map((info, index) => (
+                        <ContactInfoCard key={index} info={info} index={index} />
+                    ))}
+                </div>
+
+                {/* Bottom Section: Contact Form */}
+                <div className="max-w-3xl mx-auto">
+                    <ContactFormCard formRef={formRef} sendEmail={sendEmail} loading={loading} status={status} />
                 </div>
             </div>
         </section>
+    );
+};
+
+const ContactFormCard = ({ formRef, sendEmail, loading, status }) => {
+    const formCardRef = useRef(null);
+    const formBorderRef = useRef(null);
+
+    useEffect(() => {
+        // GSAP border rotation
+        if (formBorderRef.current) {
+            gsap.to(formBorderRef.current, {
+                rotation: 360,
+                duration: 5,
+                repeat: -1,
+                ease: "linear",
+            });
+        }
+    }, []);
+
+    return (
+        <motion.div
+            ref={formCardRef}
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 100 }}
+            whileHover={{ scale: 1.01 }}
+            className="relative rounded-3xl p-[3px] overflow-hidden"
+        >
+            {/* Electric Border */}
+            <div 
+                ref={formBorderRef}
+                className="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0%,var(--color-primary)_15%,transparent_30%,var(--color-primary)_45%,transparent_60%,var(--color-primary)_75%,transparent_90%,var(--color-primary)_100%)] opacity-70"
+            />
+
+            {/* Card Content */}
+            <div className="relative bg-white dark:bg-slate-800 p-8 md:p-10 rounded-3xl shadow-2xl"
+            >
+                {/* Animated corner accents */}
+                <motion.div
+                    className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-primary/50 rounded-tl-lg"
+                    animate={{
+                        opacity: [0.3, 1, 0.3],
+                    }}
+                    transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                />
+                <motion.div
+                    className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-primary/50 rounded-tr-lg"
+                    animate={{
+                        opacity: [0.3, 1, 0.3],
+                    }}
+                    transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 0.5,
+                    }}
+                />
+                <motion.div
+                    className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-primary/50 rounded-bl-lg"
+                    animate={{
+                        opacity: [0.3, 1, 0.3],
+                    }}
+                    transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 1,
+                    }}
+                />
+                <motion.div
+                    className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-primary/50 rounded-br-lg"
+                    animate={{
+                        opacity: [0.3, 1, 0.3],
+                    }}
+                    transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 1.5,
+                    }}
+                />
+
+                <motion.p 
+                    className='text-xl text-center mb-8 relative z-10'
+                    initial={{ opacity: 0, y: -10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                >
+                    Fill out the form below and I'll get back to you as soon as possible
+                </motion.p>
+                        {/* Status Messages */}
+                        {status === 'success' && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                className="mb-6 p-4 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-lg flex items-center justify-center"
+                            >
+                                <span className="font-medium">Message sent successfully!</span>
+                            </motion.div>
+                        )}
+                        {status === 'error' && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                className="mb-6 p-4 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-lg flex items-center justify-center"
+                            >
+                                <span className="font-medium">Something went wrong. Please try again.</span>
+                            </motion.div>
+                        )}
+
+                        <form ref={formRef} onSubmit={sendEmail} className="space-y-6 relative z-10">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <motion.div 
+                                    className="space-y-2"
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                >
+                                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Name</label>
+                                    <input
+                                        type="text"
+                                        name="user_name"
+                                        required
+                                        className="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all dark:text-white"
+                                        placeholder="Your Name"
+                                    />
+                                </motion.div>
+                                <motion.div 
+                                    className="space-y-2"
+                                    initial={{ opacity: 0, x: 20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.4 }}
+                                >
+                                    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
+                                    <input
+                                        type="email"
+                                        name="user_email"
+                                        required
+                                        className="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all dark:text-white"
+                                        placeholder="your@email.com"
+                                    />
+                                </motion.div>
+                            </div>
+                            <motion.div 
+                                className="space-y-2"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5 }}
+                            >
+                                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Message</label>
+                                <textarea
+                                    name="message"
+                                    required
+                                    rows="5"
+                                    className="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none dark:text-white"
+                                    placeholder="How can I help you?"
+                                ></textarea>
+                            </motion.div>
+
+                            <motion.button
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.6 }}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                type="submit"
+                                disabled={loading}
+                                className="w-full py-4 bg-primary hover:bg-primary/90 text-white rounded-xl font-bold text-lg shadow-lg shadow-primary/25 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                            >
+                                {loading ? (
+                                    <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                ) : (
+                                    <>
+                                        Send Message <MdSend />
+                                    </>
+                                )}
+                            </motion.button>
+
+                            {/* Social Media Links */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.7 }}
+                                className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700"
+                            >
+                                <motion.p 
+                                    className="text-center text-slate-600 dark:text-slate-400 mb-4 font-medium"
+                                    initial={{ opacity: 0 }}
+                                    whileInView={{ opacity: 1 }}
+                                    transition={{ delay: 0.8 }}
+                                >
+                                    Or connect with me on social media
+                                </motion.p>
+                                <div className="flex justify-center gap-4">
+                                    {[
+                                        { icon: <FaGithub />, href: 'https://github.com/TawhidulIslamRefat', label: 'GitHub' },
+                                        { icon: <FaLinkedin />, href: 'https://www.linkedin.com/in/tawhidul-islam-refat-webdeveloper/', label: 'LinkedIn' },
+                                        { icon: <FaTwitter />, href: 'https://x.com/TawhidulRefat?t=JPXwrO7BzzrNkFx2Kbs6Bw&s=09', label: 'Twitter' },
+                                        { icon: <FaFacebook />, href: 'https://www.facebook.com/tawhidulislamrefat11', label: 'Facebook' }
+                                    ].map((social, index) => (
+                                        <motion.a
+                                            key={social.label}
+                                            href={social.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            initial={{ opacity: 0, scale: 0, y: 20 }}
+                                            whileInView={{ 
+                                                opacity: 1, 
+                                                scale: 1,
+                                                y: 0,
+                                            }}
+                                            transition={{
+                                                delay: 0.9 + index * 0.1,
+                                                type: "spring",
+                                                stiffness: 200,
+                                            }}
+                                            whileHover={{ 
+                                                scale: 1.2,
+                                                y: -5,
+                                                rotate: [0, -10, 10, -10, 0],
+                                                backgroundColor: "var(--color-primary)",
+                                                color: "#ffffff",
+                                                borderColor: "var(--color-primary)",
+                                                boxShadow: "0 10px 25px rgba(0, 188, 249, 0.4)",
+                                                transition: { 
+                                                    rotate: { duration: 0.5 },
+                                                    scale: { duration: 0.2 },
+                                                }
+                                            }}
+                                            whileTap={{ scale: 0.9, rotate: 180 }}
+                                            className="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-600 dark:text-slate-300 text-xl transition-all duration-300 relative overflow-hidden group"
+                                            aria-label={social.label}
+                                        >
+                                            {/* Ripple effect */}
+                                            <motion.span
+                                                className="absolute inset-0 rounded-full border-2 border-primary"
+                                                initial={{ scale: 1, opacity: 0 }}
+                                                whileHover={{
+                                                    scale: 1.5,
+                                                    opacity: [0, 0.5, 0],
+                                                }}
+                                                transition={{ duration: 0.6 }}
+                                            />
+                                            <span className="relative z-10">{social.icon}</span>
+                                        </motion.a>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        </form>
+                    </div>
+        </motion.div>
     );
 };
 
