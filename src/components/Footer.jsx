@@ -408,7 +408,7 @@ const Footer = () => {
                 whileHover={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.3 }}
               />
-              <span className="relative z-10">Back to Top</span>
+              <span className="relative z-10"></span>
               <motion.div
                 animate={{
                   y: [0, -3, 0],

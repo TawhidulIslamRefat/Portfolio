@@ -86,11 +86,11 @@ const Skills = () => {
     ];
 
     const softSkills = [
-        { name: 'Problem Solving', percentage: 80, icon: 'https://cdn-icons-png.flaticon.com/512/6487/6487594.png' },
-        { name: 'Time Management', percentage: 85, icon: 'https://img.icons8.com/color/48/time-management-skills.png' },
-        { name: 'Team Work', percentage: 90, icon: 'https://cdn-icons-png.flaticon.com/512/7086/7086327.png' },
-        { name: 'Communication', percentage: 85, icon: 'https://cdn-icons-png.freepik.com/512/6681/6681066.png' },
-        { name: 'Adaptability', percentage: 85, icon: 'https://cdn-icons-png.freepik.com/512/6681/6681066.png' },
+        { name: 'Problem Solving', percentage: 80, icon: 'https://cdn-icons-png.flaticon.com/512/4133/4133589.png' },
+        { name: 'Time Management', percentage: 85, icon: 'https://cdn-icons-png.flaticon.com/512/3652/3652191.png' },
+        { name: 'Team Work', percentage: 90, icon: 'https://cdn-icons-png.flaticon.com/512/1534/1534938.png' },
+        { name: 'Communication', percentage: 85, icon: 'https://cdn-icons-png.flaticon.com/512/1067/1067566.png' },
+        { name: 'Adaptability', percentage: 85, icon: 'https://cdn-icons-png.flaticon.com/512/3588/3588592.png' },
     ];
 
     const sectionVariants = {

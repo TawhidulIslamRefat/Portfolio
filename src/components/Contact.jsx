@@ -9,23 +9,26 @@ const ContactInfoCard = ({ info, index }) => {
     const cardRef = useRef(null);
     const borderRef = useRef(null);
     const iconRef = useRef(null);
+    const glowRef = useRef(null);
+    const particleRefs = useRef([]);
 
     useEffect(() => {
-        // GSAP border rotation
+        // GSAP border rotation with varying speeds
         if (borderRef.current) {
             gsap.to(borderRef.current, {
                 rotation: 360,
-                duration: 4 + index,
+                duration: 5 + index * 0.5,
                 repeat: -1,
                 ease: "linear",
             });
         }
 
-        // GSAP floating animation
+        // GSAP floating animation with different patterns
         if (cardRef.current) {
             gsap.to(cardRef.current, {
-                y: -8,
-                duration: 2 + index * 0.3,
+                y: -10,
+                x: index % 2 === 0 ? 3 : -3,
+                duration: 2.5 + index * 0.3,
                 repeat: -1,
                 yoyo: true,
                 ease: "sine.inOut",
@@ -33,17 +36,45 @@ const ContactInfoCard = ({ info, index }) => {
             });
         }
 
-        // GSAP icon pulse
+        // GSAP icon pulse and rotation
         if (iconRef.current) {
             gsap.to(iconRef.current, {
-                scale: 1.1,
-                duration: 1.5,
+                scale: 1.15,
+                rotation: 5,
+                duration: 1.8,
                 repeat: -1,
                 yoyo: true,
                 ease: "sine.inOut",
                 delay: index * 0.3,
             });
         }
+
+        // GSAP glow pulse
+        if (glowRef.current) {
+            gsap.to(glowRef.current, {
+                scale: 1.5,
+                opacity: 0.4,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: index * 0.4,
+            });
+        }
+
+        // GSAP particle animations
+        particleRefs.current.forEach((particle, i) => {
+            if (particle) {
+                gsap.to(particle, {
+                    y: -20 - i * 5,
+                    opacity: 0,
+                    duration: 2 + i * 0.3,
+                    repeat: -1,
+                    ease: "power1.out",
+                    delay: i * 0.5,
+                });
+            }
+        });
     }, [index]);
 
     return (
@@ -156,10 +187,10 @@ const Contact = () => {
 
         // REPLACE THESE WITH YOUR ACTUAL EMAILJS SERVICE ID, TEMPLATE ID, AND PUBLIC KEY
         emailjs.sendForm(
-            'service_rq2t8rp',
-            'template_yxg43rp',
+            'service_ldvvfnj',
+            'template_6tpfp4h',
             formRef.current,
-            '6r7ycv8cg5cWRkWpv'
+            'DcpOrevzKxsTYTShi'
         )
             .then((result) => {
                 console.log(result.text);
@@ -398,17 +429,50 @@ const ContactFormCard = ({ formRef, sendEmail, loading, status }) => {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.6 }}
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
+                                whileHover={{ 
+                                    scale: 1.03,
+                                    boxShadow: "0 20px 40px rgba(0, 188, 249, 0.4)",
+                                }}
+                                whileTap={{ scale: 0.97 }}
                                 type="submit"
                                 disabled={loading}
-                                className="w-full py-4 bg-primary hover:bg-primary/90 text-white rounded-xl font-bold text-lg shadow-lg shadow-primary/25 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                                className="relative w-full sm:w-auto sm:min-w-[280px] sm:mx-auto h-14 px-8 bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-600 text-white rounded-2xl font-bold text-base sm:text-lg shadow-xl shadow-primary/30 transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed overflow-hidden group"
                             >
+                                {/* Animated background shine effect */}
+                                <motion.div
+                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                                    animate={{
+                                        x: ['-200%', '200%'],
+                                    }}
+                                    transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        repeatDelay: 1,
+                                        ease: "easeInOut",
+                                    }}
+                                />
+                                
                                 {loading ? (
-                                    <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                        <span>Sending...</span>
+                                    </div>
                                 ) : (
                                     <>
-                                        Send Message <MdSend />
+                                        <span className="relative z-10">Send Message</span>
+                                        <motion.span
+                                            className="relative z-10"
+                                            animate={{
+                                                x: [0, 5, 0],
+                                            }}
+                                            transition={{
+                                                duration: 1.5,
+                                                repeat: Infinity,
+                                                ease: "easeInOut",
+                                            }}
+                                        >
+                                            <MdSend className="text-xl" />
+                                        </motion.span>
                                     </>
                                 )}
                             </motion.button>
