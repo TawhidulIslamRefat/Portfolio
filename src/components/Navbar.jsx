@@ -157,7 +157,7 @@ const Navbar = () => {
 
               {/* Download Resume Button */}
               <motion.a
-                href="https://docs.google.com/document/d/1WIRKxpW3gbdYfYl6DYm8lIOk-9EI6_3J/edit?usp=sharing&ouid=102865775355070212798&rtpof=true&sd=true"
+                href="https://drive.google.com/file/d/1y7fBVYNqrJPhGPlDK023Ae9n3uglLO4H/view?usp=sharing"
                 download
                 className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all font-medium flex items-center gap-1 relative overflow-hidden"
                 whileHover={{

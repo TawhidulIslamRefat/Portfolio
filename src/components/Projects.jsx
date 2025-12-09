@@ -248,7 +248,7 @@ const Projects = () => {
                         >
                             {/* Animated background glow */}
                             <motion.div
-                                className="absolute inset-0 bg-gradient-to-r from-primary/10 via-purple-500/10 to-primary/10"
+                                className="absolute inset-0 bg-gradient-to-r from-primary/10 via-purple-500/10 to-primary"
                                 animate={{
                                     x: ['-100%', '100%'],
                                 }}

@@ -8,6 +8,8 @@ const Hero = () => {
     const blob1Ref = useRef(null);
     const blob2Ref = useRef(null);
     const blob3Ref = useRef(null);
+    const hireButtonRef = useRef(null);
+    const resumeButtonRef = useRef(null);
 
     useEffect(() => {
         // GSAP Animations for Background Blobs (Organic floating movement)
@@ -25,6 +27,39 @@ const Hero = () => {
                 delay: index * 2,
             });
         });
+
+        // GSAP Button Animations
+        if (hireButtonRef.current) {
+            // Continuous glow pulse
+            gsap.to(hireButtonRef.current, {
+                boxShadow: "0 10px 40px rgba(0, 188, 249, 0.6)",
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+            });
+
+            // Subtle floating
+            gsap.to(hireButtonRef.current, {
+                y: -3,
+                duration: 1.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+            });
+        }
+
+        if (resumeButtonRef.current) {
+            // Subtle floating with different timing
+            gsap.to(resumeButtonRef.current, {
+                y: -3,
+                duration: 1.8,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: 0.5,
+            });
+        }
     }, []);
 
     // Framer Motion Variants
@@ -93,19 +128,124 @@ const Hero = () => {
                     </motion.p>
 
                     <motion.div variants={itemVariants} className="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
-                        <motion.a href='#contact'
-                            whileHover={{ scale: 1.05 }}
+                        {/* Hire Me Button with GSAP + Framer Motion */}
+                        <motion.a 
+                            ref={hireButtonRef}
+                            href='#contact'
+                            whileHover={{ 
+                                scale: 1.08,
+                                rotate: [0, -2, 2, -2, 0],
+                                transition: { 
+                                    rotate: { duration: 0.5 },
+                                    scale: { duration: 0.2 }
+                                }
+                            }}
                             whileTap={{ scale: 0.95 }}
-                            className="bg-gradient-to-r from-primary to-blue-600 text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
+                            className="relative bg-gradient-to-r from-primary to-blue-600 text-white font-bold py-3 px-8 rounded-xl shadow-lg overflow-hidden group"
                         >
-                            Hire Me
+                            {/* Animated shine effect */}
+                            <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                                animate={{
+                                    x: ['-200%', '200%'],
+                                }}
+                                transition={{
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    repeatDelay: 1,
+                                    ease: "easeInOut",
+                                }}
+                            />
+                            
+                            {/* Ripple effect on hover */}
+                            <motion.span
+                                className="absolute inset-0 rounded-xl border-2 border-white/50"
+                                initial={{ scale: 1, opacity: 0 }}
+                                whileHover={{
+                                    scale: 1.1,
+                                    opacity: [0, 0.5, 0],
+                                }}
+                                transition={{ duration: 0.6 }}
+                            />
+                            
+                            <span className="relative z-10 flex items-center gap-2">
+                                Hire Me
+                                <motion.span
+                                    animate={{
+                                        x: [0, 3, 0],
+                                    }}
+                                    transition={{
+                                        duration: 1.5,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                    }}
+                                >
+                                    →
+                                </motion.span>
+                            </span>
                         </motion.a>
-                        <motion.a href='https://docs.google.com/document/d/1WIRKxpW3gbdYfYl6DYm8lIOk-9EI6_3J/edit?usp=sharing&ouid=102865775355070212798&rtpof=true&sd=true'
-                            whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.9)" }}
+
+                        {/* Download Resume Button with GSAP + Framer Motion */}
+                        <motion.a 
+                            ref={resumeButtonRef}
+                            href='https://drive.google.com/file/d/1y7fBVYNqrJPhGPlDK023Ae9n3uglLO4H/view?usp=sharing'
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ 
+                                scale: 1.08,
+                                borderColor: "var(--color-primary)",
+                                boxShadow: "0 10px 30px rgba(0, 188, 249, 0.3)",
+                                transition: { duration: 0.3 }
+                            }}
                             whileTap={{ scale: 0.95 }}
-                            className="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-bold py-3 px-8 rounded-xl border border-slate-200 dark:border-slate-700 shadow-md hover:shadow-lg transition-all duration-300"
+                            className="relative bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-bold py-3 px-8 rounded-xl border-2 border-slate-200 dark:border-slate-700 shadow-md overflow-hidden group"
                         >
-                            Download Resume
+                            {/* Animated background on hover */}
+                            <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-primary/10 to-blue-500/10"
+                                initial={{ x: '-100%' }}
+                                whileHover={{ x: 0 }}
+                                transition={{ duration: 0.3 }}
+                            />
+                            
+                            {/* Particle burst effect */}
+                            {[...Array(4)].map((_, i) => (
+                                <motion.div
+                                    key={i}
+                                    className="absolute w-1 h-1 bg-primary rounded-full"
+                                    style={{
+                                        top: '50%',
+                                        left: '50%',
+                                    }}
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    whileHover={{
+                                        scale: [0, 1, 0],
+                                        opacity: [0, 1, 0],
+                                        x: [0, (i % 2 === 0 ? 20 : -20)],
+                                        y: [0, (i < 2 ? -20 : 20)],
+                                    }}
+                                    transition={{
+                                        duration: 0.6,
+                                        delay: i * 0.1,
+                                    }}
+                                />
+                            ))}
+                            
+                            <span className="relative z-10 flex items-center gap-2">
+                                <motion.span
+                                    animate={{
+                                        rotate: [0, 360],
+                                    }}
+                                    transition={{
+                                        duration: 3,
+                                        repeat: Infinity,
+                                        ease: "linear",
+                                    }}
+                                >
+                                    📄
+                                </motion.span>
+                                Download Resume
+                            </span>
                         </motion.a>
                     </motion.div>
 

@@ -8,11 +8,11 @@ const About = () => {
     const cardRef1 = useRef(null);
     const cardRef2 = useRef(null);
     const electricBorderRef = useRef(null);
+    const cardBorder1Ref = useRef(null);
+    const cardBorder2Ref = useRef(null);
 
     useEffect(() => {
-        const cards = [cardRef1.current, cardRef2.current];
-
-        // Electric border animation with GSAP
+        // Electric border animation for profile image
         if (electricBorderRef.current) {
             gsap.to(electricBorderRef.current, {
                 rotation: 360,
@@ -22,55 +22,24 @@ const About = () => {
             });
         }
 
-        cards.forEach((card) => {
-            if (!card) return;
-
-            // Create a random moving gradient blob effect for each card background
-            const blob = document.createElement('div');
-            blob.classList.add('absolute', 'w-64', 'h-64', 'rounded-full', 'blur-3xl', 'opacity-20', 'pointer-events-none', '-z-10');
-            // Randomize starting color/position slightly
-            blob.style.background = Math.random() > 0.5 ? 'var(--color-primary)' : '#4f46e5';
-            card.appendChild(blob);
-
-            gsap.to(blob, {
-                x: "random(-100, 100)",
-                y: "random(-100, 100)",
-                scale: "random(0.8, 1.2)",
-                duration: "random(10, 20)",
+        // Card border rotation animations
+        if (cardBorder1Ref.current) {
+            gsap.to(cardBorder1Ref.current, {
+                rotation: 360,
+                duration: 8,
                 repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
+                ease: "linear",
             });
-        });
-
-        // Add floating particles to the background
-        const container = document.querySelector('.about-container');
-        if (container) {
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('absolute', 'w-1', 'h-1', 'bg-primary/30', 'rounded-full', 'pointer-events-none', 'z-0');
-                // Random initial position
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                container.appendChild(particle);
-
-                gsap.to(particle, {
-                    y: `random(-50, 50)`,
-                    x: `random(-50, 50)`,
-                    opacity: "random(0.1, 0.5)",
-                    scale: "random(0.5, 2)",
-                    duration: "random(3, 8)",
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut"
-                });
-            }
         }
 
-        // Cleanup blobs on unmount (optional for simple effects but good practice)
-        return () => {
-            // simplified cleanup, React 19 handles node removal well usually
-        };
+        if (cardBorder2Ref.current) {
+            gsap.to(cardBorder2Ref.current, {
+                rotation: -360,
+                duration: 10,
+                repeat: -1,
+                ease: "linear",
+            });
+        }
     }, []);
 
     const containerVariants = {
@@ -96,7 +65,6 @@ const About = () => {
         }
     };
 
-    // New variants for the spinning rings
     const ringVariants = {
         animate: {
             rotate: 360,
@@ -131,7 +99,76 @@ const About = () => {
     return (
         <section className="about-container pt-16 md:pt-20 pb-5 mt-5 w-full md:w-11/12 mx-auto
         overflow-hidden relative">
-            <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                {/* Floating Gradient Orbs */}
+                <motion.div
+                    className="absolute top-10 left-10 w-72 h-72 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-3xl"
+                    animate={{
+                        x: [0, 100, 0],
+                        y: [0, 50, 0],
+                        scale: [1, 1.2, 1],
+                    }}
+                    transition={{
+                        duration: 15,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                />
+                <motion.div
+                    className="absolute top-1/3 right-10 w-96 h-96 bg-gradient-to-br from-blue-500/15 to-primary/15 rounded-full blur-3xl"
+                    animate={{
+                        x: [0, -80, 0],
+                        y: [0, 80, 0],
+                        scale: [1, 1.3, 1],
+                    }}
+                    transition={{
+                        duration: 18,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 1,
+                    }}
+                />
+                <motion.div
+                    className="absolute bottom-20 left-1/4 w-80 h-80 bg-gradient-to-br from-purple-500/15 to-pink-500/15 rounded-full blur-3xl"
+                    animate={{
+                        x: [0, 60, 0],
+                        y: [0, -60, 0],
+                        scale: [1, 1.15, 1],
+                    }}
+                    transition={{
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 2,
+                    }}
+                />
+
+                {/* Floating Particles */}
+                {[...Array(15)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute w-1 h-1 bg-primary/40 rounded-full"
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                        }}
+                        animate={{
+                            y: [0, -30, 0],
+                            x: [0, Math.random() * 20 - 10, 0],
+                            opacity: [0.2, 0.8, 0.2],
+                            scale: [1, 1.5, 1],
+                        }}
+                        transition={{
+                            duration: 3 + Math.random() * 4,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: i * 0.2,
+                        }}
+                    />
+                ))}
+            </div>
+
             <motion.div
                 className="container mx-auto px-0 sm:px-6 lg:px-8 relative z-10"
                 variants={containerVariants}
@@ -148,12 +185,44 @@ const About = () => {
                         whileHover={{ scale: 1.02 }}
                         className="relative group rounded-3xl p-[3px] overflow-hidden"
                     >
-                        {/* Electric Border Animation */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 animate-[spin_3s_linear_infinite]" />
-                        <div className="absolute inset-[-100%] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,var(--color-primary)_20%,transparent_40%,var(--color-primary)_60%,transparent_80%,var(--color-primary)_100%)] animate-[spin_4s_linear_infinite] opacity-70" />
+                        {/* Electric Border Animation with GSAP */}
+                        <div 
+                            ref={cardBorder1Ref}
+                            className="absolute inset-[-100%] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,var(--color-primary)_20%,transparent_40%,var(--color-primary)_60%,transparent_80%,var(--color-primary)_100%)] opacity-70"
+                        />
+                        
+                        {/* Gradient border on hover */}
+                        <motion.div 
+                            className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                            style={{
+                                background: "linear-gradient(45deg, var(--color-primary), #a855f7, #ec4899, var(--color-primary))",
+                                backgroundSize: "300% 300%",
+                            }}
+                            animate={{
+                                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                            }}
+                            transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "linear",
+                            }}
+                        />
                         
                         {/* Card Content */}
                         <div className="relative rounded-3xl p-6 md:p-10 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl shadow-2xl flex flex-col justify-center items-center h-full">
+                            {/* Simple animated background blob */}
+                            <motion.div 
+                                className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-16 -mt-16"
+                                animate={{
+                                    scale: [1, 1.2, 1],
+                                    opacity: [0.1, 0.2, 0.1],
+                                }}
+                                transition={{
+                                    duration: 4,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                }}
+                            />
                             {/* Decorative elements */}
                             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-16 -mt-16 transition-all duration-700 group-hover:bg-primary/20"></div>
                             
@@ -193,7 +262,6 @@ const About = () => {
 
                             {/* Outer animated ring */}
                             <motion.div
-                                variants={ringVariants}
                                 animate="animate"
                                 whileHover="hover"
                                 className="absolute inset-0 border-2 border-primary/30 rounded-full z-10"
@@ -201,7 +269,6 @@ const About = () => {
 
                             {/* Inner dashed ring */}
                             <motion.div
-                                variants={reverseRingVariants}
                                 animate="animate"
                                 whileHover="hover"
                                 className="absolute inset-3 border border-dashed border-primary/50 rounded-full z-10"
@@ -327,13 +394,45 @@ const About = () => {
                         whileHover={{ scale: 1.02 }}
                         className="relative group rounded-3xl p-[3px] overflow-hidden"
                     >
-                        {/* Electric Border Animation - Reverse Direction */}
-                        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 animate-[spin_3s_linear_infinite_reverse]" />
-                        <div className="absolute inset-[-100%] bg-[conic-gradient(from_270deg_at_50%_50%,transparent_0%,var(--color-primary)_20%,transparent_40%,var(--color-primary)_60%,transparent_80%,var(--color-primary)_100%)] animate-[spin_4s_linear_infinite_reverse] opacity-70" />
+                        {/* Electric Border Animation - Reverse Direction with GSAP */}
+                        <div 
+                            ref={cardBorder2Ref}
+                            className="absolute inset-[-100%] bg-[conic-gradient(from_270deg_at_50%_50%,transparent_0%,var(--color-primary)_20%,transparent_40%,var(--color-primary)_60%,transparent_80%,var(--color-primary)_100%)] opacity-70"
+                        />
+                        
+                        {/* Gradient border on hover */}
+                        <motion.div 
+                            className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                            style={{
+                                background: "linear-gradient(-45deg, var(--color-primary), #a855f7, #ec4899, var(--color-primary))",
+                                backgroundSize: "300% 300%",
+                            }}
+                            animate={{
+                                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                            }}
+                            transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "linear",
+                            }}
+                        />
                         
                         {/* Card Content */}
                         <div className="relative rounded-3xl p-6 md:p-10 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl shadow-2xl flex flex-col justify-center h-full">
-                            <div className="absolute bottom-0 left-0 w-40 h-40 bg-secondary/10 rounded-full blur-3xl -ml-20 -mb-20"></div>
+                            {/* Simple animated background blob */}
+                            <motion.div 
+                                className="absolute bottom-0 left-0 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl -ml-20 -mb-20"
+                                animate={{
+                                    scale: [1, 1.3, 1],
+                                    opacity: [0.1, 0.2, 0.1],
+                                }}
+                                transition={{
+                                    duration: 5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    delay: 1,
+                                }}
+                            />
                             
                             {/* Animated corner accents */}
                             <motion.div
