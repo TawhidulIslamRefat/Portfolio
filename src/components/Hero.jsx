@@ -82,7 +82,7 @@ const Hero = () => {
     };
 
     return (
-        <section className='w-full md:w-11/12 mx-auto mt-10 md:px-5 px-0'>
+        <section className='w-full md:w-11/12 mx-auto mt-5 md:mt-10 md:px-5 px-0'>
 
             {/* Glassmorphism Card */}
 

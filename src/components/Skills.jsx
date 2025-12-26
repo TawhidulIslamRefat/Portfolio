@@ -65,7 +65,7 @@ const Skills = () => {
         { name: 'Node.js', percentage: 87, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
         { name: 'Express.js', percentage: 85, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', colorClass: "dark:invert" },
         { name: 'Firebase', percentage: 90, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
-        { name: 'JWT', percentage: 70, icon: 'https://img.icons8.com/color/48/java-web-token.png' },
+        { name: 'JWT', percentage: 80, icon: 'https://img.icons8.com/color/48/java-web-token.png' },
         { name: 'REST API', percentage: 80, icon: 'https://img.icons8.com/external-flaticons-flat-flat-icons/64/external-api-web-development-flaticons-flat-flat-icons.png' },
     ];
 
@@ -103,8 +103,8 @@ const Skills = () => {
     };
 
     return (
-        <section className=" w-full md:w-11/12 mx-auto px-0 md:px-5 font-display text-gray-800 dark:text-gray-200 antialiased overflow-hidden">
-            <div className=" mx-auto px-0 md:px-4 py-16 sm:pt-24 sm:pb-10">
+        <section className=" w-full md:w-11/12 mx-auto px-0  font-display text-gray-800 dark:text-gray-200 antialiased overflow-hidden">
+            <div className=" mx-auto px-0  py-16 sm:pt-24 sm:pb-10">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"

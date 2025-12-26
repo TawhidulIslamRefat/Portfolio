@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { BsSun, BsMoon } from "react-icons/bs";
-import { HiDownload, HiCode } from "react-icons/hi";
+import { HiCode } from "react-icons/hi";
+import { FaDownload } from "react-icons/fa6";
 import { Link } from "react-scroll";
 
 const Navbar = () => {
@@ -12,6 +13,8 @@ const Navbar = () => {
     const savedTheme = localStorage.getItem("theme");
     return savedTheme || "dark";
   });
+  const [activeLink, setActiveLink] = useState('home');
+  const navItems = ['home', 'about', 'skills', 'projects', 'education', 'contact'];
 
   const logoRef = useRef(null);
   const navbarRef = useRef(null);
@@ -66,72 +69,30 @@ const Navbar = () => {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
-              <Link
-                to="home"
-                activeClass="!text-primary !font-bold relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors cursor-pointer font-medium relative"
-              >
-                Home
-              </Link>
-              <Link
-                to="about"
-                activeClass="!text-primary !font-bold relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors cursor-pointer font-medium relative"
-              >
-                About
-              </Link>
-              <Link
-                to="skills"
-                activeClass="!text-primary !font-bold relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors cursor-pointer font-medium relative"
-              >
-                Skills
-              </Link>
-              <Link
-                to="projects"
-                activeClass="!text-primary !font-bold relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors cursor-pointer font-medium relative"
-              >
-                Projects
-              </Link>
-              <Link
-                to="education"
-                activeClass="!text-primary !font-bold relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors cursor-pointer font-medium relative"
-              >
-                Education
-              </Link>
-              <Link
-                to="contact"
-                activeClass="!text-primary !font-bold relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors cursor-pointer font-medium relative"
-              >
-                Contact
-              </Link>
+              {navItems.map((item) => (
+                <Link
+                  key={item}
+                  to={item}
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                  onSetActive={() => setActiveLink(item)}
+                  className={`relative cursor-pointer font-medium transition-colors duration-300 ${activeLink === item
+                      ? "text-primary dark:text-primary font-bold"
+                      : "text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary"
+                    }`}
+                >
+                  <span className="capitalize">{item}</span>
+                  {activeLink === item && (
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute bottom-[-4px] left-0 w-full h-0.5 bg-primary rounded-full"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </Link>
+              ))}
 
               {/* Theme Toggle */}
               <motion.button
@@ -177,7 +138,17 @@ const Navbar = () => {
                     ease: "linear",
                   }}
                 />
-                <HiDownload className="relative z-10" />
+                <motion.span
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="relative z-10"
+                >
+                  <FaDownload />
+                </motion.span>
                 <span className="relative z-10">Resume</span>
               </motion.a>
             </div>
@@ -307,7 +278,17 @@ const Navbar = () => {
                   transition={{ delay: 0.4 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Resume <HiDownload />
+                  Resume
+                  <motion.span
+                    animate={{ y: [0, -3, 0] }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <FaDownload />
+                  </motion.span>
                 </motion.a>
               </motion.div>
             )}
