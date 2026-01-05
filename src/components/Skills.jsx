@@ -59,6 +59,8 @@ const Skills = () => {
         { name: 'CSS3', percentage: 93, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
         { name: 'React Router', percentage: 85, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/reactrouter/reactrouter-original.svg' },
         { name: 'Responsive Design', percentage: 95, icon: 'https://cdn-icons-png.flaticon.com/512/2721/2721291.png' },
+        { name: 'Framer Motion', percentage: 90, icon: 'https://cdn.worldvectorlogo.com/logos/framer-motion.svg' },
+        { name: 'GSAP', percentage: 85, icon: 'https://gsap.com/community/uploads/monthly_2020_03/tweenmax.png.cf27916e926fbb328ff214f66b4c8429.png' },
     ];
 
     const backendSkills = [
@@ -82,6 +84,7 @@ const Skills = () => {
         { name: 'npm', percentage: 85, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg' },
         { name: 'Netlify', percentage: 90, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg' },
         { name: 'Vercel', percentage: 85, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg', colorClass: "dark:invert" },
+        { name: 'Heroku', percentage: 80, icon: 'https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/3/heroku-icon-20b15jsu5137qalquqt80o.png/heroku-icon-4ashhqeovx2kiqns6sep4.png?_a=DATAg1AAZAA0', colorClass: "dark:invert" },
         { name: 'Chrome DevTools', percentage: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg' },
     ];
 
@@ -104,18 +107,18 @@ const Skills = () => {
 
     return (
         <section className=" w-full md:w-11/12 mx-auto px-0  font-display text-gray-800 dark:text-gray-200 antialiased overflow-hidden">
-            <div className=" mx-auto px-0  py-16 sm:pt-24 sm:pb-10">
+            <div className=" mx-auto py-12 sm:pt-16 sm:pb-10">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
                     variants={sectionVariants}
-                    className="max-w-4xl mx-auto text-center mb-12"
+                    className="max-w-4xl mx-auto text-center mb-6"
                 >
                     <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
                         Skills & Technologies
                     </h1>
-                    <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+                    <p className="mt-2 text-lg text-gray-600 dark:text-gray-400">
                         Technologies and skills I use to build amazing products
                     </p>
                 </motion.div>
@@ -129,7 +132,7 @@ const Skills = () => {
                         { title: "Tools", skills: toolSkills },
                         { title: "Soft Skills", skills: softSkills }
                     ].map((section, idx) => (
-                        <div key={idx} className=' p-2 md:p-6 rounded-lg transition-shadow duration-300 flex flex-col  text-center'>
+                        <div key={idx} className=' p-0 md:p-6 rounded-lg transition-shadow duration-300 flex flex-col  text-center'>
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}

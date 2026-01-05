@@ -9,7 +9,6 @@ import { Link } from "react-scroll";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [theme, setTheme] = useState(() => {
-    // Check localStorage first, if not found, default to "dark"
     const savedTheme = localStorage.getItem("theme");
     return savedTheme || "dark";
   });
@@ -20,7 +19,6 @@ const Navbar = () => {
   const navbarRef = useRef(null);
 
   useEffect(() => {
-    // Apply theme on mount and when theme changes
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
@@ -118,8 +116,9 @@ const Navbar = () => {
 
               {/* Download Resume Button */}
               <motion.a
-                href="https://drive.google.com/file/d/1y7fBVYNqrJPhGPlDK023Ae9n3uglLO4H/view?usp=sharing"
+                href="https://drive.google.com/file/d/1YU_AzukxPRa1gkLu4GOqWqs5WbQbDT5Z/view?usp=sharing"
                 download
+                target="_blank"
                 className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all font-medium flex items-center gap-1 relative overflow-hidden"
                 whileHover={{
                   scale: 1.05,

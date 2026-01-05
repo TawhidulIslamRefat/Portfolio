@@ -235,14 +235,14 @@ const Contact = () => {
             {/* Background Decorations */}
             
 
-            <div className="w-full md:w-11/12 mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="w-full md:w-11/12 mx-auto px-0 sm:px-6 lg:px-5 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-8"
                 >
-                    <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Get In Touch</h2>
+                    <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">Get In Touch</h2>
                     <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
                         Have a project in mind or just want to say hi? Feel free to reach out!
                     </p>

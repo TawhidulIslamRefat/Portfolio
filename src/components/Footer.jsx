@@ -47,8 +47,8 @@ const SocialIcon = ({ social, index }) => {
       target="_blank"
       rel="noopener noreferrer"
       initial={{ opacity: 0, y: 20, scale: 0 }}
-      animate={{ 
-        opacity: 1, 
+      animate={{
+        opacity: 1,
         y: [0, -8, 0],
         scale: 1,
       }}
@@ -63,14 +63,14 @@ const SocialIcon = ({ social, index }) => {
           delay: index * 0.2,
         }
       }}
-      whileHover={{ 
-        y: -12, 
+      whileHover={{
+        y: -12,
         scale: 1.3,
         rotate: [0, -15, 15, -15, 0],
         backgroundColor: "var(--color-primary)",
         color: "#ffffff",
         borderColor: "var(--color-primary)",
-        transition: { 
+        transition: {
           rotate: { duration: 0.6 },
           y: { duration: 0.2 },
           scale: { duration: 0.2 },
@@ -83,13 +83,13 @@ const SocialIcon = ({ social, index }) => {
       className="w-10 h-10 rounded-full bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 flex items-center justify-center text-slate-500 dark:text-slate-400 shadow-sm dark:shadow-none hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 relative overflow-hidden"
     >
       {/* Background glow effect */}
-      <div 
+      <div
         ref={glowRef}
         className="absolute inset-0 bg-primary/20 rounded-full blur-md opacity-0"
       />
-      
+
       {/* Rotating border effect */}
-      <div 
+      <div
         ref={iconRef}
         className="absolute inset-[-2px] rounded-full opacity-0 group-hover:opacity-100"
         style={{
@@ -201,9 +201,7 @@ const Footer = () => {
                 <span className="text-primary">Tawhidul Islam Refat</span>
               </h2>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base transition-colors duration-300">
-                Frontend Developer crafting clean and responsive web interfaces.
-                Passionate about building seamless user experiences with modern
-                technologies.
+                Full-Stack MERN Developer building modern, scalable, and high-performance web applications with a strong focus on user experience and clean code.
               </p>
               <div className="flex gap-4 pt-2">
                 {socialLinks.map((social, index) => (
@@ -293,12 +291,12 @@ const Footer = () => {
 
           {/* Column 4: Map */}
           <motion.div variants={itemVariants} className="space-y-6">
-            <motion.h3 
+            <motion.h3
               className="text-lg font-bold text-slate-900 dark:text-white relative inline-block transition-colors duration-300"
               whileHover={{ x: 5 }}
             >
               Location
-              <motion.span 
+              <motion.span
                 className="absolute -bottom-2 left-0 h-0.5 bg-primary rounded-full"
                 initial={{ width: "2rem" }}
                 whileHover={{ width: "100%" }}
@@ -324,7 +322,7 @@ const Footer = () => {
                 title="Google Map"
                 className="w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-300"
               ></iframe>
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 bg-primary/10 pointer-events-none"
                 initial={{ opacity: 0 }}
                 whileHover={{ opacity: 1 }}
@@ -376,7 +374,7 @@ const Footer = () => {
             }}
           />
 
-          <motion.p 
+          <motion.p
             className="text-slate-500 dark:text-slate-400 font-medium transition-colors duration-300"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -395,7 +393,7 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 boxShadow: "0 0 20px rgba(0, 188, 249, 0.3)",
               }}

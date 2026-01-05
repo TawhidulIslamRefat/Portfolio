@@ -193,7 +193,7 @@ const Education = () => {
 
     return (
         <section className="font-display bg-background-light dark:bg-background-dark text-slate-700 dark:text-slate-300 antialiased overflow-hidden">
-            <div className="p-4 sm:p-6 md:p-14 flex items-center justify-center">
+            <div className="p-0 sm:p-6 md:p-6 flex items-center justify-center">
                 <div className="w-full md:w-11/12 mx-auto">
                     <motion.div
                         initial={{ opacity: 0, y: -20 }}
