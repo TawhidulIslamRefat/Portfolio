@@ -53,7 +53,7 @@ const Skills = () => {
     const frontendSkills = [
         { name: 'JavaScript (ES6+)', percentage: 96, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
         { name: 'React.js', percentage: 92, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-        { name: 'Next.js', percentage: 70, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg', colorClass: "dark:invert" },
+        { name: 'Next.js', percentage: 85, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg', colorClass: "dark:invert" },
         { name: 'Tailwind CSS', percentage: 90, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg' },
         { name: 'HTML5', percentage: 95, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
         { name: 'CSS3', percentage: 93, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
