@@ -1,22 +1,35 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
 
 const SkillCard = ({ name, percentage, icon, colorClass, index }) => {
+    const cardRef = useRef(null);
+    const isInView = useInView(cardRef, { once: true, margin: "-50px" });
+    const count = useMotionValue(0);
+    const rounded = useTransform(count, (latest) => Math.round(latest));
+
+    useEffect(() => {
+        if (isInView) {
+            const animation = animate(count, percentage, {
+                duration: 2,
+                delay: 0.2 + (index * 0.1),
+                ease: "easeOut",
+            });
+            return animation.stop;
+        }
+    }, [isInView, percentage, index, count]);
+
     return (
         <motion.div
+            ref={cardRef}
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="group relative rounded-xl p-[2px] overflow-hidden" // Container for border
+            className="group relative rounded-xl p-[2px] overflow-hidden" 
         >
-            {/* Electric Border Background - Spinning Gradient */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 animate-spin-slow" />
 
-            {/* Alternative "Electric" Border using Conic Gradient for continuous effect */}
             <div className="absolute inset-[-100%] bg-[conic-gradient(from_90deg_at_50%_50%,#0000_0%,var(--color-primary)_50%,#0000_100%)] animate-[spin_4s_linear_infinite] opacity-100" />
 
-            {/* Content Mask */}
             <div className="relative h-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl p-6 rounded-xl flex flex-col items-center text-center z-10">
                 <img alt={`${name} logo`} className="h-12 w-12 mb-4 drop-shadow-lg" src={icon} />
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-4">{name}</h3>
@@ -31,17 +44,15 @@ const SkillCard = ({ name, percentage, icon, colorClass, index }) => {
                             r="40"
                             stroke="currentColor"
                             strokeDasharray="251.2"
-                            strokeDashoffset="251.2" // Start empty
-                            animate={{ strokeDashoffset: 251.2 - (251.2 * percentage) / 100 }}
-                            whileInView={{ strokeDashoffset: 251.2 - (251.2 * percentage) / 100 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 + (index * 0.1) }}
+                            strokeDashoffset="251.2" 
+                            animate={isInView ? { strokeDashoffset: 251.2 - (251.2 * percentage) / 100 } : { strokeDashoffset: 251.2 }}
+                            transition={{ duration: 2, ease: "easeOut", delay: 0.2 + (index * 0.1) }}
                             strokeLinecap="round"
                             strokeWidth="8"
                         ></motion.circle>
                     </svg>
                     <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white">
-                        {percentage}%
+                        <motion.span>{rounded}</motion.span>%
                     </span>
                 </div>
             </div>
@@ -124,7 +135,6 @@ const Skills = () => {
                 </motion.div>
 
                 <div className="space-y-5">
-                    {/* Reusable Section for Skills Categories */}
                     {[
                         { title: "Frontend", skills: frontendSkills },
                         { title: "Backend", skills: backendSkills },
