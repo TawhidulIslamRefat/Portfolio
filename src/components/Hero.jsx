@@ -351,7 +351,7 @@ const Hero = () => {
             {/* Download Resume Button with GSAP + Framer Motion */}
             <motion.a
               ref={resumeButtonRef}
-              href="https://drive.google.com/file/d/1YU_AzukxPRa1gkLu4GOqWqs5WbQbDT5Z/view?usp=sharing"
+              href="https://drive.google.com/file/d/1QLRTbeN6ei4jLfO16cdoe13-wqafhuyU/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{

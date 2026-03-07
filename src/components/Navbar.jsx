@@ -116,7 +116,7 @@ const Navbar = () => {
 
               {/* Download Resume Button */}
               <motion.a
-                href="https://drive.google.com/file/d/1YU_AzukxPRa1gkLu4GOqWqs5WbQbDT5Z/view?usp=sharing"
+                href="https://drive.google.com/file/d/1QLRTbeN6ei4jLfO16cdoe13-wqafhuyU/view?usp=sharing"
                 download
                 target="_blank"
                 className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all font-medium flex items-center gap-1 relative overflow-hidden"

@@ -2,12 +2,17 @@ import React, { useEffect, useRef, useMemo } from "react";
 import image from "../assets/WhatsApp Image 2025-12-05 at 14.23.37_df561ed3.jpg";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
-import { MdEmail, MdCode, MdRocket, MdFavorite } from "react-icons/md";
+import { MdEmail, MdCode, MdRocket, MdFavorite, MdWeb, MdStorage, MdDeveloperMode, MdApi } from "react-icons/md";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   const electricRef = useRef(null);
   const borderRef = useRef(null);
+  const whatIDoRef = useRef(null);
+  const whatIDoCardsRef = useRef(null);
 
   // Generate random positions once for sparks using useMemo
   const sparkPositions = useMemo(
@@ -62,6 +67,38 @@ const About = () => {
         ease: "sine.inOut",
       });
     }
+
+    // "What I Do" section GSAP animations (ScrollTrigger)
+    const sectionEl = whatIDoRef.current;
+    const cardsEl = whatIDoCardsRef.current;
+    const triggers = [];
+    if (sectionEl) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionEl,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      });
+      tl.fromTo(sectionEl, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" });
+      triggers.push(tl.scrollTrigger);
+    }
+    if (cardsEl && cardsEl.children.length) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: cardsEl,
+          start: "top 88%",
+          toggleActions: "play none none none",
+        },
+      });
+      tl.fromTo(
+        cardsEl.children,
+        { opacity: 0, y: 40, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.12, ease: "back.out(1.2)" }
+      );
+      triggers.push(tl.scrollTrigger);
+    }
+    return () => triggers.forEach((t) => t.kill());
   }, []);
 
   return (
@@ -94,126 +131,129 @@ const About = () => {
               transition={{ duration: 0.7 }}
               className="lg:col-span-4"
             >
-              <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-xl border border-slate-200 dark:border-slate-800 sticky top-24">
-                {/* Profile Image */}
-                <motion.div
-                  whileHover={{ scale: 1.03 }}
-                  className="relative mb-6"
-                >
-                  <div
-                    ref={borderRef}
-                    className="relative w-full aspect-square overflow-hidden rounded-2xl border-4 border-primary shadow-lg"
-                    style={{
-                      boxShadow: "0 0 20px rgba(0, 188, 249, 0.5)",
-                    }}
+              {/* Profile Card with Electric Border */}
+              <BorderCard className="shadow-2xl sticky top-24">
+                <div className="p-8">
+                  {/* Profile Image */}
+                  <motion.div
+                    whileHover={{ scale: 1.03 }}
+                    className="relative mb-6"
                   >
-                    {/* Animated Border Effect */}
-                    <motion.div
-                      animate={{
-                        rotate: [0, 360],
+                    <div
+                      ref={borderRef}
+                      className="relative w-full aspect-square overflow-hidden rounded-2xl border-4 border-primary shadow-lg"
+                      style={{
+                        boxShadow: "0 0 20px rgba(0, 188, 249, 0.5)",
                       }}
-                      transition={{
-                        duration: 8,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                      className="absolute -inset-1 bg-gradient-to-r from-primary via-purple-500 to-blue-500 rounded-2xl blur-sm opacity-75"
-                    />
-                    <img
-                      src={image}
-                      alt="Tawhidul Islam Refat"
-                      className="relative w-full h-full object-cover z-10"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent z-20"></div>
-                    <div className="absolute bottom-4 left-4 right-4 z-30">
-                      <h3 className="text-2xl font-bold text-white mb-1">
-                        Tawhidul Islam Refat
-                      </h3>
-                      <p className="text-primary font-semibold">
-                        Full Stack MERN Developer
-                      </p>
+                    >
+                      {/* Animated Border Effect */}
+                      <motion.div
+                        animate={{
+                          rotate: [0, 360],
+                        }}
+                        transition={{
+                          duration: 8,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                        className="absolute -inset-1 bg-gradient-to-r from-primary via-purple-500 to-blue-500 rounded-2xl blur-sm opacity-75"
+                      />
+                      <img
+                        src={image}
+                        alt="Tawhidul Islam Refat"
+                        className="relative w-full h-full object-cover z-10"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent z-20"></div>
+                      <div className="absolute bottom-4 left-4 right-4 z-30">
+                        <h3 className="text-2xl font-bold text-white mb-1">
+                          Tawhidul Islam Refat
+                        </h3>
+                        <p className="text-primary font-semibold">
+                          Full Stack MERN Developer
+                        </p>
+                      </div>
                     </div>
+                  </motion.div>
+
+                  {/* Stats */}
+                  <div className="grid grid-cols-3 gap-4 mb-6">
+                    {[
+                      { label: "Years", value: "1+" },
+                      { label: "Projects", value: "20+" },
+                      { label: "Skills", value: "10+" },
+                    ].map((stat, i) => (
+                      <motion.div
+                        key={stat.label}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1 }}
+                        className="text-center p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"
+                      >
+                        <p className="text-3xl font-bold text-primary">
+                          {stat.value}
+                        </p>
+                        <p className="text-xs text-slate-600 dark:text-slate-400 uppercase tracking-wide">
+                          {stat.label}
+                        </p>
+                      </motion.div>
+                    ))}
                   </div>
-                </motion.div>
 
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-4 mb-6">
-                  {[
-                    { label: "Years", value: "1+" },
-                    { label: "Projects", value: "20+" },
-                    { label: "Skills", value: "10+" },
-                  ].map((stat, i) => (
-                    <motion.div
-                      key={stat.label}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
-                      className="text-center p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"
-                    >
-                      <p className="text-3xl font-bold text-primary">
-                        {stat.value}
-                      </p>
-                      <p className="text-xs text-slate-600 dark:text-slate-400 uppercase tracking-wide">
-                        {stat.label}
-                      </p>
-                    </motion.div>
-                  ))}
+                  {/* Social Links */}
+                  <div className="flex justify-center gap-3">
+                    {[
+                      {
+                        icon: FaGithub,
+                        url: "https://github.com/TawhidulIslamRefat",
+                      },
+                      {
+                        icon: FaLinkedin,
+                        url: "https://www.linkedin.com/in/tawhidul-islam-refat-webdeveloper/",
+                      },
+                      {
+                        icon: FaTwitter,
+                        url: "https://x.com/TawhidulRefat?t=JPXwrO7BzzrNkFx2Kbs6Bw&s=09",
+                      },
+                      {
+                        icon: FaFacebook,
+                        url: "https://www.facebook.com/tawhidulislamrefat11",
+                      },
+                      {
+                        icon: MdEmail,
+                        url: "mailto:tawhidulislamrefat11@gmail.com",
+                      },
+                    ].map((social, i) => (
+                      <motion.a
+                        key={i}
+                        href={social.url}
+                        target={
+                          social.url.includes("mailto") ? undefined : "_blank"
+                        }
+                        rel={
+                          social.url.includes("mailto")
+                            ? undefined
+                            : "noopener noreferrer"
+                        }
+                        animate={{
+                          y: [0, -8, 0],
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: i * 0.2,
+                        }}
+                        whileHover={{ scale: 1.2, y: -3 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="w-12 h-12 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-primary hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
+                      >
+                        <social.icon className="text-xl" />
+                      </motion.a>
+                    ))}
+                  </div>
                 </div>
-
-                {/* Social Links */}
-                <div className="flex justify-center gap-3">
-                  {[
-                    {
-                      icon: FaGithub,
-                      url: "https://github.com/TawhidulIslamRefat",
-                    },
-                    {
-                      icon: FaLinkedin,
-                      url: "https://www.linkedin.com/in/tawhidul-islam-refat-webdeveloper/",
-                    },
-                    {
-                      icon: FaTwitter,
-                      url: "https://x.com/TawhidulRefat?t=JPXwrO7BzzrNkFx2Kbs6Bw&s=09",
-                    },
-                    {
-                      icon: FaFacebook,
-                      url: "https://www.facebook.com/tawhidulislamrefat11",
-                    },
-                    {
-                      icon: MdEmail,
-                      url: "mailto:tawhidulislamrefat11@gmail.com",
-                    },
-                  ].map((social, i) => (
-                    <motion.a
-                      key={i}
-                      href={social.url}
-                      target={
-                        social.url.includes("mailto") ? undefined : "_blank"
-                      }
-                      rel={
-                        social.url.includes("mailto")
-                          ? undefined
-                          : "noopener noreferrer"
-                      }
-                      animate={{
-                        y: [0, -8, 0],
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: i * 0.2,
-                      }}
-                      whileHover={{ scale: 1.2, y: -3 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-12 h-12 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-primary hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
-                    >
-                      <social.icon className="text-xl" />
-                    </motion.a>
-                  ))}
-                </div>
-              </div>
+              </BorderCard>
             </motion.div>
 
             {/* Right Column - Content */}
@@ -257,49 +297,85 @@ const About = () => {
                     believer in continuous learning and always looking for new
                     challenges to grow my skills.
                   </p>
+                  {/* Merged "Love" and "Goal" Text */}
+                  <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                    <p>
+                      <span className="font-bold text-pink-500">My passion lies in</span> building beautiful UIs, smooth animations, and writing clean, efficient code. I love solving complex problems and turning coffee into code!
+                    </p>
+                    <p className="mt-2">
+                      <span className="font-bold text-cyan-500">My goal is to</span> join a dynamic team where I can contribute to impactful products, continue learning, and grow as a developer.
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              {/* Three Cards Row */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* Card 1 */}
+              {/* What I Do Section - Increased height + GSAP & Framer Motion */}
+              <div
+                ref={whatIDoRef}
+                className="bg-white dark:bg-slate-900 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800 min-h-[320px] md:min-h-[380px] py-8 md:py-10 px-6 md:px-8"
+              >
                 <motion.div
-                  whileHover={{ y: -8 }}
-                  className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8"
                 >
-                  <MdCode className="text-5xl mb-4" />
-                  <h4 className="text-xl font-bold mb-2">Tech Stack</h4>
-                  <p className="text-sm text-blue-100">
-                    React • Node.js • Express • MongoDB • Next.js • TypeScript •
-                    Tailwind CSS
-                  </p>
+                  <div className="flex items-center gap-3">
+                    <motion.div
+                      animate={{ rotate: [0, 360] }}
+                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                      className="p-3 rounded-xl bg-primary/10"
+                    >
+                      <MdCode className="text-primary text-3xl" />
+                    </motion.div>
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white">
+                        What I Do
+                      </h3>
+                      <p className="text-sm md:text-base text-slate-500 dark:text-slate-400 mt-1">
+                        Tailored web solutions for your business
+                      </p>
+                    </div>
+                  </div>
                 </motion.div>
 
-                {/* Card 2 */}
-                <motion.div
-                  whileHover={{ y: -8 }}
-                  className="bg-gradient-to-br from-pink-500 to-red-500 rounded-2xl p-6 text-white shadow-lg"
+                <div
+                  ref={whatIDoCardsRef}
+                  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 md:gap-6"
                 >
-                  <MdFavorite className="text-5xl mb-4" />
-                  <h4 className="text-xl font-bold mb-2">What I Love</h4>
-                  <p className="text-sm text-pink-100">
-                    Building beautiful UIs • Smooth animations • Clean code •
-                    Problem solving
-                  </p>
-                </motion.div>
-
-                {/* Card 3 */}
-                <motion.div
-                  whileHover={{ y: -8 }}
-                  className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg"
-                >
-                  <MdRocket className="text-5xl mb-4" />
-                  <h4 className="text-xl font-bold mb-2">My Goal</h4>
-                  <p className="text-sm text-purple-100">
-                    Join a dynamic team • Continuous learning • Build impactful
-                    products
-                  </p>
-                </motion.div>
+                  {[
+                    { title: "Frontend", icon: MdWeb, color: "text-blue-500", bg: "bg-blue-500/10", desc: "UI & UX" },
+                    { title: "Backend", icon: MdStorage, color: "text-purple-500", bg: "bg-purple-500/10", desc: "APIs & DB" },
+                    { title: "Full Stack", icon: MdDeveloperMode, color: "text-green-500", bg: "bg-green-500/10", desc: "End-to-end" },
+                    { title: "MERN Stack", icon: MdApi, color: "text-orange-500", bg: "bg-orange-500/10", desc: "MongoDB, Express, React, Node" },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.title}
+                      whileHover={{ y: -8, scale: 1.03 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="p-5 md:p-6 rounded-2xl border-2 border-slate-100 dark:border-slate-800 hover:border-primary/40 transition-colors bg-slate-50 dark:bg-slate-800/50 flex flex-col items-center gap-4 text-center min-h-[140px] md:min-h-[160px] justify-center"
+                    >
+                      <motion.div
+                        className={`w-12 h-12 md:w-14 md:h-14 rounded-xl ${item.bg} ${item.color} flex items-center justify-center`}
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.4 }}
+                      >
+                        <item.icon className="text-xl md:text-2xl" />
+                      </motion.div>
+                      <div>
+                        <span className="font-bold text-base md:text-lg text-slate-700 dark:text-slate-300 block">
+                          {item.title}
+                        </span>
+                        {item.desc && (
+                          <span className="text-xs md:text-sm text-slate-500 dark:text-slate-400 mt-0.5 block">
+                            {item.desc}
+                          </span>
+                        )}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
 
               {/* Skills & Traits */}
