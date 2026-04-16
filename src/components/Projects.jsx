@@ -319,7 +319,7 @@ const Projects = () => {
         "https://www.smarterselect.com/hs-fs/hubfs/Benefits-of-Using-Scholarship-Management-Software-Internal-Image-29-May-2024.jpg?width=1080&height=567&name=Benefits-of-Using-Scholarship-Management-Software-Internal-Image-29-May-2024.jpg",
       category: "Full Stack",
       type: "backend",
-      live: "https://scholarship-stream.netlify.app/",
+      live: "https://scholar-point.netlify.app/",
       githubClient: "https://github.com/TawhidulIslamRefat/Scholar-Stream.git",
       githubServer:
         "https://github.com/TawhidulIslamRefat/scholarstream-server.git",
@@ -408,7 +408,7 @@ const Projects = () => {
       image:
         "https://img.freepik.com/free-vector/happy-people-shopping-online_74855-5865.jpg?semt=ais_hybrid&w=740&q=80",
       category: "Frontend",
-      live: "https://toy-topia-01.netlify.app/",
+      live: "https://kidzomart.netlify.app/",
       githubClient: "https://github.com/TawhidulIslamRefat/KidzoMart.git",
       githubServer: "",
       challenges:
@@ -442,32 +442,7 @@ const Projects = () => {
         "Learning and utilizing Next.js 16 features like Server Actions and the new routing system. Configuring authentication securely with NextAuth (or custom solution) alongside protected API routes.",
       futurePlans:
         "Implementing a payment gateway (like SSLCommerz or Stripe). Adding a blog section for product reviews and SEO optimization to drive organic traffic.",
-    },
-    {
-      title: "HERO.IO",
-      description:
-        "HERO.IO is a modern, responsive web application designed to give users a seamless app discovery experience — just like the Play Store or App Store.",
-      tags: [
-        "React",
-        "Tailwind CSS",
-        "Netlify",
-        "React Router",
-        " Recharts",
-        "Local Storage",
-        "React Spinners",
-        "React-Toastify",
-      ],
-      image:
-        "https://focusgov-static.pages.dev/_astro/2020-10-ceros-ios-apps-busy_Z8ESOz.png",
-      category: "Frontend",
-      live: "https://hero-apps-1.netlify.app/",
-      githubClient: "https://github.com/TawhidulIslamRefat/Hero-App.git",
-      githubServer: "",
-      challenges:
-        "Building a responsive grid layout that mimics a native app store experience on the web. Handling large localized datasets and implementing efficient search and sort functionality on the client side.",
-      futurePlans:
-        "Fetching dynamic data from a real external API. Implementing PWA (Progressive Web App) features so users can install it on their devices.",
-    },
+    }
   ];
 
   const filteredProjects =

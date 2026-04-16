@@ -27,4 +27,20 @@
       transform: translateX(100%);
     }
   }
+
+}
+
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button, [role='button'], input, textarea, select, label {
+    cursor: none;
+  }
+}
+
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
 }

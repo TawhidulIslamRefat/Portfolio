@@ -353,7 +353,6 @@ const Hero = () => {
               ref={resumeButtonRef}
               href="https://drive.google.com/file/d/1QLRTbeN6ei4jLfO16cdoe13-wqafhuyU/view?usp=sharing"
               target="_blank"
-              rel="noopener noreferrer"
               whileHover={{
                 scale: 1.08,
                 borderColor: "var(--color-primary)",
