@@ -125,7 +125,7 @@ const Hero = () => {
                 <Typewriter
                   options={{
                     strings: [
-                      "Full Stack (MERN) Developer",
+                      "Full Stack Developer",
                       "Frontend Specialist",
                       "React.JS Developer",
                     ],
@@ -141,7 +141,7 @@ const Hero = () => {
             variants={itemVariants}
             className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed max-w-lg mx-auto md:mx-0"
           >
-            Driven Full Stack (MERN) Developer with hands-on experience in
+            Driven Full Stack Developer with hands-on experience in
             React, Next.js, Node.js, Express.js, and MongoDB. Skilled in
             building scalable, responsive, and user-friendly web applications
             with clean UI, efficient backend logic, and seamless user

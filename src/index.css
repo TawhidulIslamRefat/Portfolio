@@ -31,16 +31,13 @@
 }
 
 @media (pointer: fine) {
-  body {
-    cursor: none;
-  }
-  a, button, [role='button'], input, textarea, select, label {
-    cursor: none;
+  *, *::before, *::after {
+    cursor: none !important;
   }
 }
 
 @media (pointer: coarse) {
-  body {
-    cursor: auto;
+  *, *::before, *::after {
+    cursor: auto !important;
   }
 }

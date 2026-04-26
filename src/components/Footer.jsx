@@ -201,7 +201,7 @@ const Footer = () => {
                 <span className="text-primary">Tawhidul Islam Refat</span>
               </h2>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base transition-colors duration-300">
-                Full-Stack MERN Developer building modern, scalable, and high-performance web applications with a strong focus on user experience and clean code.
+                Full-Stack Developer building modern, and high-performance web applications with a strong focus on user experience and clean code.
               </p>
               <div className="flex gap-4 pt-2">
                 {socialLinks.map((social, index) => (
