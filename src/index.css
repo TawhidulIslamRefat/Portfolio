@@ -31,13 +31,12 @@
 }
 
 @media (pointer: fine) {
-  *, *::before, *::after {
-    cursor: none !important;
-  }
+  /* Default cursor kept visible — magic cursor overlays on top */
 }
 
 @media (pointer: coarse) {
-  *, *::before, *::after {
-    cursor: auto !important;
+  .magic-cursor-dot,
+  .magic-cursor-ring {
+    display: none !important;
   }
 }

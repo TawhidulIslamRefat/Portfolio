@@ -1,12 +1,10 @@
 import { useEffect, useRef } from "react";
 
 export default function MagicCursor() {
-  const dotRef = useRef(null);
   const ringRef = useRef(null);
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    const dot = dotRef.current;
     const ring = ringRef.current;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -28,8 +26,7 @@ export default function MagicCursor() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Show cursor elements
-    dot.style.opacity = "0";
+    // Show ring hidden initially
     ring.style.opacity = "0";
 
     // --- Particle ---
@@ -98,13 +95,8 @@ export default function MagicCursor() {
         hasEntered = true;
         ringX = mouseX;
         ringY = mouseY;
-        dot.style.opacity = "1";
         ring.style.opacity = "1";
       }
-
-      // Move dot instantly
-      dot.style.left = mouseX + "px";
-      dot.style.top = mouseY + "px";
 
       // Trail particles
       if (Math.random() > 0.45) {
@@ -127,14 +119,10 @@ export default function MagicCursor() {
     const onMouseUp = () => { isClicking = false; };
 
     const onMouseLeave = () => {
-      dot.style.opacity = "0";
       ring.style.opacity = "0";
     };
     const onMouseEnter = () => {
-      if (hasEntered) {
-        dot.style.opacity = "1";
-        ring.style.opacity = "1";
-      }
+      if (hasEntered) ring.style.opacity = "1";
     };
 
     // --- Hover on interactive elements ---
@@ -187,17 +175,6 @@ export default function MagicCursor() {
         ? "0 0 12px 2px rgba(255,255,255,0.3)"
         : "0 0 10px 2px rgba(0,188,249,0.4)";
 
-      // Dot size
-      const dotSize = isClicking ? 4 : 8;
-      dot.style.width = dotSize + "px";
-      dot.style.height = dotSize + "px";
-      dot.style.marginLeft = -(dotSize / 2) + "px";
-      dot.style.marginTop = -(dotSize / 2) + "px";
-      dot.style.backgroundColor = isHovering ? "#ffffff" : "#00bcf9";
-      dot.style.boxShadow = isHovering
-        ? "0 0 8px 2px rgba(255,255,255,0.6)"
-        : "0 0 8px 2px rgba(0,188,249,0.8)";
-
       animFrame = requestAnimationFrame(animate);
     };
 
@@ -236,7 +213,7 @@ export default function MagicCursor() {
         }}
       />
 
-      {/* Trailing ring */}
+      {/* Trailing ring — follows the native cursor with smooth easing */}
       <div
         ref={ringRef}
         style={{
@@ -254,28 +231,6 @@ export default function MagicCursor() {
           opacity: 0,
           transition:
             "width 0.18s ease, height 0.18s ease, margin 0.18s ease, border-color 0.2s, box-shadow 0.2s, opacity 0.3s",
-          willChange: "left, top",
-        }}
-      />
-
-      {/* Center dot */}
-      <div
-        ref={dotRef}
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: 8,
-          height: 8,
-          marginLeft: -4,
-          marginTop: -4,
-          borderRadius: "50%",
-          backgroundColor: "#00bcf9",
-          pointerEvents: "none",
-          zIndex: 99999,
-          opacity: 0,
-          boxShadow: "0 0 8px 2px rgba(0,188,249,0.8)",
-          transition: "width 0.1s, height 0.1s, margin 0.1s, background-color 0.2s, box-shadow 0.2s, opacity 0.3s",
           willChange: "left, top",
         }}
       />

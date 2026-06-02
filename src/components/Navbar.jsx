@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { BsSun, BsMoon } from "react-icons/bs";
 import { HiCode } from "react-icons/hi";
-import { FaDownload } from "react-icons/fa6";
+import { HiDocumentArrowDown } from "react-icons/hi2";
 import { Link } from "react-scroll";
 
 const Navbar = () => {
@@ -143,9 +143,9 @@ const Navbar = () => {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="relative z-10"
+                  className="relative z-10 text-lg"
                 >
-                  <FaDownload />
+                  <HiDocumentArrowDown />
                 </motion.span>
                 <span className="relative z-10">Resume</span>
               </motion.a>
@@ -284,8 +284,9 @@ const Navbar = () => {
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
+                    className="text-lg"
                   >
-                    <FaDownload />
+                    <HiDocumentArrowDown />
                   </motion.span>
                 </motion.a>
               </motion.div>
