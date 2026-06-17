@@ -1,5 +1,5 @@
 import { useEffect, useRef, useMemo } from "react";
-import image from "../assets/BackgroundEraser_20260423_073837820.jpg.jpeg";
+import image from "../assets/WhatsApp Image 2025-12-05 at 14.23.37_df561ed3.jpg";
 import { motion, useInView } from "framer-motion";
 import { FaGithub, FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
 import { MdEmail, MdCode, MdWeb, MdStorage, MdDeveloperMode, MdApi, MdCheckCircle } from "react-icons/md";
