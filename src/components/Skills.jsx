@@ -30,10 +30,10 @@ const SkillCard = ({ name, percentage, icon, colorClass, index }) => {
 
             <div className="absolute inset-[-100%] bg-[conic-gradient(from_90deg_at_50%_50%,#0000_0%,var(--color-primary)_50%,#0000_100%)] animate-[spin_4s_linear_infinite] opacity-100" />
 
-            <div className="relative h-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl p-6 rounded-xl flex flex-col items-center text-center z-10">
-                <img alt={`${name} logo`} className="h-12 w-12 mb-4 drop-shadow-lg" src={icon} />
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-4">{name}</h3>
-                <div className="relative w-24 h-24">
+            <div className="relative h-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl p-4 rounded-xl flex flex-col items-center text-center z-10">
+                <img alt={`${name} logo`} className="h-10 w-10 mb-3 drop-shadow-lg" src={icon} />
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">{name}</h3>
+                <div className="relative w-16 h-16">
                     <svg className="w-full h-full" viewBox="0 0 100 100">
                         <circle className="text-gray-200 dark:text-slate-700" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" strokeWidth="8"></circle>
                         <motion.circle
@@ -51,7 +51,7 @@ const SkillCard = ({ name, percentage, icon, colorClass, index }) => {
                             strokeWidth="8"
                         ></motion.circle>
                     </svg>
-                    <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-gray-900 dark:text-white">
+                    <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-semibold text-gray-900 dark:text-white">
                         <motion.span>{rounded}</motion.span>%
                     </span>
                 </div>
@@ -87,6 +87,7 @@ const Skills = () => {
     ];
 
     const toolSkills = [
+        { name: 'AI Tools', percentage: 96, icon: 'https://cdn-icons-png.flaticon.com/512/8637/8637099.png' },
         { name: 'Git', percentage: 90, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
         { name: 'GitHub', percentage: 90, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', colorClass: "dark:invert" },
         { name: 'VS Code', percentage: 90, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg' },

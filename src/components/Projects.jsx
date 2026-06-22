@@ -234,7 +234,7 @@ const ProjectCard = ({
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(800px_circle_at_var(--x)_var(--y),rgba(120,119,198,0.3),transparent_40%)] z-0" />
 
       <div className="relative h-full bg-white dark:bg-slate-900 rounded-2xl overflow-hidden flex flex-col z-10">
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative h-40 overflow-hidden">
           <img
             alt={title}
             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
@@ -250,18 +250,18 @@ const ProjectCard = ({
           </div>
         </div>
 
-        <div className="p-6 flex flex-col flex-grow">
+        <div className="p-4 flex flex-col flex-grow">
           <h3
-            className="text-xl font-bold text-slate-800 dark:text-white mb-2 line-clamp-1"
+            className="text-lg font-bold text-slate-800 dark:text-white mb-2 line-clamp-1"
             title={title}
           >
             {title}
           </h3>
-          <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-3">
+          <p className="text-slate-600 dark:text-slate-400 text-sm mb-3 line-clamp-2">
             {description}
           </p>
 
-          <div className="flex flex-wrap gap-2 mb-6 mt-auto">
+          <div className="flex flex-wrap gap-2 mb-4 mt-auto">
             {tags.slice(0, 3).map((tag, idx) => (
               <span
                 key={idx}
