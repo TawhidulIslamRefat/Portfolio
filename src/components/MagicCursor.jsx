@@ -165,7 +165,7 @@ export default function MagicCursor() {
       ring.style.top = ringY + "px";
 
       // Ring size
-      const ringSize = isClicking ? 18 : isHovering ? 54 : 36;
+      const ringSize = isClicking ? 12 : isHovering ? 36 : 24;
       ring.style.width = ringSize + "px";
       ring.style.height = ringSize + "px";
       ring.style.marginLeft = -(ringSize / 2) + "px";
@@ -220,10 +220,10 @@ export default function MagicCursor() {
           position: "fixed",
           top: 0,
           left: 0,
-          width: 36,
-          height: 36,
-          marginLeft: -18,
-          marginTop: -18,
+          width: 24,
+          height: 24,
+          marginLeft: -12,
+          marginTop: -12,
           borderRadius: "50%",
           border: "2px solid #00bcf9",
           pointerEvents: "none",

@@ -4,7 +4,9 @@ import { gsap } from "gsap";
 import { BsSun, BsMoon } from "react-icons/bs";
 import { HiCode } from "react-icons/hi";
 import { HiDocumentArrowDown } from "react-icons/hi2";
-import { Link } from "react-scroll";
+import useSectionSpy from "../hooks/useSectionSpy";
+
+const NAV_ITEMS = ["home", "about", "skills", "projects", "education", "contact"];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,8 +14,8 @@ const Navbar = () => {
     const savedTheme = localStorage.getItem("theme");
     return savedTheme || "dark";
   });
-  const [activeLink, setActiveLink] = useState('home');
-  const navItems = ['home', 'about', 'skills', 'projects', 'education', 'contact'];
+  const navItems = NAV_ITEMS;
+  const activeLink = useSectionSpy(navItems);
 
   const logoRef = useRef(null);
   const navbarRef = useRef(null);
@@ -40,10 +42,8 @@ const Navbar = () => {
           className="px-3 md:px-5 py-2 md:py-3 w-full md:w-11/12 mx-auto rounded-2xl bg-white/30 dark:bg-slate-800/40 backdrop-blur-md border border-white/20 transition-colors duration-300 shadow-lg"
         >
           <nav className="flex justify-between items-center">
-            <Link
-              to="home"
-              smooth={true}
-              duration={500}
+            <a
+              href="#home"
               className="cursor-pointer flex items-center gap-2"
             >
               <motion.div
@@ -63,19 +63,14 @@ const Navbar = () => {
               >
                 REFAT
               </motion.span>
-            </Link>
+            </a>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
-                <Link
+                <a
                   key={item}
-                  to={item}
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}
-                  onSetActive={() => setActiveLink(item)}
+                  href={`#${item}`}
                   className={`relative cursor-pointer font-medium transition-colors duration-300 ${activeLink === item
                       ? "text-primary dark:text-primary font-bold"
                       : "text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary"
@@ -89,7 +84,7 @@ const Navbar = () => {
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
-                </Link>
+                </a>
               ))}
 
               {/* Theme Toggle */}
@@ -193,78 +188,18 @@ const Navbar = () => {
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <Link
-                  to="home"
-                  activeClass="!text-primary !font-bold !bg-primary/10 !rounded-lg"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
-                  offset={-70}
-                  className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors cursor-pointer font-medium px-3 py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Home
-                </Link>
-                <Link
-                  to="about"
-                  activeClass="!text-primary !font-bold !bg-primary/10 !rounded-lg"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
-                  offset={-70}
-                  className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors cursor-pointer font-medium px-3 py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  About
-                </Link>
-                <Link
-                  to="skills"
-                  activeClass="!text-primary !font-bold !bg-primary/10 !rounded-lg"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
-                  offset={-70}
-                  className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors cursor-pointer font-medium px-3 py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Skills
-                </Link>
-                <Link
-                  to="projects"
-                  activeClass="!text-primary !font-bold !bg-primary/10 !rounded-lg"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
-                  offset={-70}
-                  className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors cursor-pointer font-medium px-3 py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Projects
-                </Link>
-                <Link
-                  to="education"
-                  activeClass="!text-primary !font-bold !bg-primary/10 !rounded-lg"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
-                  offset={-70}
-                  className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors cursor-pointer font-medium px-3 py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Education
-                </Link>
-                <Link
-                  to="contact"
-                  activeClass="!text-primary !font-bold !bg-primary/10 !rounded-lg"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
-                  offset={-70}
-                  className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors cursor-pointer font-medium px-3 py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Contact
-                </Link>
+                {navItems.map((item) => (
+                  <a
+                    key={item}
+                    href={`#${item}`}
+                    className={`text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors cursor-pointer font-medium px-3 py-2 capitalize ${
+                      activeLink === item ? "text-primary font-bold bg-primary/10 rounded-lg" : ""
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item}
+                  </a>
+                ))}
 
                 {/* Mobile Download Resume Button */}
                 <motion.a

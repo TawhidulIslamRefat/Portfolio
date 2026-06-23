@@ -10,6 +10,7 @@ import {
   FaArrowUp,
 } from "react-icons/fa";
 import { HiCode } from "react-icons/hi";
+import { useSmoothScroll } from "../providers/SmoothScrollProvider";
 
 const SocialIcon = ({ social, index }) => {
   const iconRef = useRef(null);
@@ -135,6 +136,8 @@ const SocialIcon = ({ social, index }) => {
 };
 
 const Footer = () => {
+  const { scrollTo } = useSmoothScroll();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -172,14 +175,14 @@ const Footer = () => {
   ];
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    scrollTo(0, { duration: 1.1 });
   };
 
   return (
-    <footer className="w-full md:w-11/12 mx-auto relative font-display overflow-hidden transition-colors duration-500 border-t border-slate-200 dark:border-slate-800">
+    <footer
+      className="w-full md:w-11/12 mx-auto relative font-display overflow-hidden transition-colors duration-500 border-t border-slate-200 dark:border-slate-800"
+      data-aos="fade-up"
+    >
       {/* Top decorative line */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
 
