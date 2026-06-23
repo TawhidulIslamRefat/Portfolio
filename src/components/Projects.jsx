@@ -442,7 +442,35 @@ const Projects = () => {
         "Learning and utilizing Next.js 16 features like Server Actions and the new routing system. Configuring authentication securely with NextAuth (or custom solution) alongside protected API routes.",
       futurePlans:
         "Implementing a payment gateway (like SSLCommerz or Stripe). Adding a blog section for product reviews and SEO optimization to drive organic traffic.",
-    }
+    },
+    {
+      title: "Care.IO – Trusted Care Services Platform",
+      description:
+        "Care.IO is a full-stack web application that connects families with verified caregivers for babysitting, elderly care, and sick & special care services across Bangladesh. Users can browse services, view caregiver profiles, and book appointments seamlessly. The platform features real-time booking status tracking, transparent pricing, and a 24/7 support system.",
+      tags: [
+        "Next.js",
+        "Tailwind CSS",
+        "Next Auth",
+        "AOS",
+        "Vercel",
+        "App Router",
+      ],
+
+      image:
+        "https://media.istockphoto.com/id/2191629602/photo/medical-health-cloud-data-concept-a-doctor-analyzing-with-a-tablet-and-laptop-accessing.jpg?s=612x612&w=0&k=20&c=FgNot-FWsHUMLohtd0-l84aAP-4IZflcH-24jN0SgmM=",
+
+      category: "Frontend",
+      type: "Frontend",
+
+      live: "https://care-io-ashy.vercel.app/",
+      githubClient: "https://github.com/TawhidulIslamRefat/Care.IO.git",
+
+      challenges:
+        "Implementing a reliable caregiver verification and booking flow, managing dynamic service categories (baby care, elderly care, sick care) with real-time status updates, and ensuring a responsive, accessible UI across devices were the primary challenges.",
+
+      futurePlans:
+        "Future improvements include adding a caregiver rating & review system, integrating an online payment gateway (bKash/SSLCommerz), implementing advanced search and filtering for caregivers, adding a live chat feature between families and caregivers, and expanding service coverage to more cities across Bangladesh.",
+    },
   ];
 
   const filteredProjects =
