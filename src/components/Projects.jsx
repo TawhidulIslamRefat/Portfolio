@@ -377,7 +377,7 @@ const Projects = () => {
         "Swiper Slider",
       ],
       image:
-        "https://s3.ap-southeast-1.amazonaws.com/arrowhitech.com/wp-content/uploads/2022/06/15022712/smart-city-min.jpg",
+        "https://www.housingwire.com/wp-content/uploads/2024/10/Untitled-3-copy.png?w=840",
       category: "Full Stack",
       type: "backend",
       live: "https://home-nest-1.netlify.app/",

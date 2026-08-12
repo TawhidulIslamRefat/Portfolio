@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
-import { MdSchool, MdMenuBook, MdLocationOn, MdCalendarToday, MdPublic, MdTranslate } from 'react-icons/md';
+import { MdSchool, MdMenuBook, MdLocationOn, MdCalendarToday, MdPublic, MdTranslate, MdCode } from 'react-icons/md';
 
 const EducationCard = ({ item, index, itemVariants }) => {
     const cardRef = useRef(null);
@@ -156,13 +156,14 @@ const EducationCard = ({ item, index, itemVariants }) => {
 const Education = () => {
     const educationData = [
         {
-            title: "Higher Secondary Certificate (H.S.C)",
-            institution: "Govt. Siraj Uddin Memorial Collage",
-            location: "Khulna, Bangladesh",
-            period: "June 2025 - Present",
-            description: "I am currently an HSC student in the Arts stream, focusing on developing strong analytical, communication, and critical thinking skills to prepare for higher studies.",
-            icon: <MdSchool />,
-            type: "academic"
+            title: "CSE Fundamentals with Phitron",
+            institution: "Phitron",
+            location: "Online",
+            period: "March 2026 - Present",
+            description: "Comprehensive CSE fundamentals training covering C, C++, Python, Data Structures, Algorithms, and Software Development, with a strong focus on problem-solving, programming fundamentals, and efficient coding practices.",
+            icon: <MdCode />,
+            type: "course",
+            locationIcon: <MdPublic /> // World icon for Online
         },
         {
             title: "Complete Web Development Course",
@@ -170,10 +171,20 @@ const Education = () => {
             location: "Online",
             period: "Jul 2025 - Dec 2025",
             description: "Complete web development training covering HTML, CSS, JavaScript, React.js, Node.js, Express.js, MongoDB, and modern web technologies.",
-            icon: <MdMenuBook />,
+            icon: <MdCode />,
             type: "course",
             locationIcon: <MdPublic /> // World icon for Online
+        },
+        {
+            title: "Higher Secondary Certificate (H.S.C)",
+            institution: "Govt. Siraj Uddin Memorial Collage",
+            location: "Khulna, Bangladesh",
+            period: "June 2025 - Present",
+            description: "I am currently an HSC student in the Arts stream, focusing on developing strong analytical, communication, and critical thinking skills to prepare for higher studies.",
+            icon: <MdSchool />,
+            type: "academic"
         }
+        
     ];
 
     const containerVariants = {
